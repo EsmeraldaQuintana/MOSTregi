@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+""" This script is django created. Run python3 manage.py runserver to run the
+projet."""
+
+
 import os
 import sys
 
