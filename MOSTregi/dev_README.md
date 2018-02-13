@@ -18,6 +18,13 @@ $ workon MOSTregi
 
 Begin coding.
 
+### TO DEPLOY (see it in browser)
+$ ./deploy.sh
+  If this doesn't work, do this:
+$ chmod +x deploy.sh
+$ ./deploy.sh
+  If that didn't work, ask Esmeralda.
+
 ### ENDING DEVELOPMENT SESSION:
 $ deactivate
   this turns off virtualenv
