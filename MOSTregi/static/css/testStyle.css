@@ -5,12 +5,12 @@
 
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+    font-family: 'Playfair Display', serif;
+    background: hsla(360, 100%, 100%, 0.5);
 }
 
 p {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -32,10 +32,18 @@ a, a:hover, a:focus {
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-btn {
+.navbar-btn, .btn-info {
+    font-family: 'Noto Sans', sans-serif;
     box-shadow: none;
     outline: none !important;
     border: none;
+    color: #fff;
+    background-color: #FF9800;
+}
+
+.navbar-btn:hover, .navbar-btn:focus, .navbar-btn:active {
+    background-color: #F57C00 !important;
+    border-color: hsl(30, 100%, 10%);
 }
 
 .line {
@@ -55,7 +63,7 @@ a, a:hover, a:focus {
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: #7386D5;
+    background: #795548;
     color: #fff;
     transition: all 0.3s;
 }
@@ -66,12 +74,12 @@ a, a:hover, a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #5D4037;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid #5D4037;
 }
 
 #sidebar ul p {
@@ -85,13 +93,14 @@ a, a:hover, a:focus {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
+    /* colors are opposite of la.active */
+    color: #5D4037;
     background: #fff;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #5D4037;
 }
 
 
@@ -130,11 +139,12 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 a.download {
-    background: #fff;
-    color: #7386D5;
+    font-family: 'Noto Sans', sans-serif;
+    background: #D7CCC8;
+    color: #5D4037;
 }
 a.article, a.article:hover {
-    background: #6d7fcc !important;
+    background: #5D4037 !important;
     color: #fff !important;
 }
 
