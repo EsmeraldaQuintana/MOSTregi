@@ -15,13 +15,6 @@ Start a new virtualenv, make sure you have all required software.
 $ pip install -r requirements.txt
 To get all the dependecies.
 
-### TO START:
-Begin the virtual environemnt:
-$ workon MOSTregi
-  workon is syntax provided by virtualenvwrapper
-  workon will activate virtualenv for the MOSTregi project
-
-Begin coding.
 
 ### TO DEPLOY (see it in browser)
 $ ./deploy.sh
