@@ -10,6 +10,11 @@
 
 install virtualenv with pip3! Not pip. Otherwise virtualenv will use python2 as default.
 
+### BEFORE DEVELOPMENT:
+Start a new virtualenv, make sure you have all required software.
+$ pip install -r requirements.txt
+To get all the dependecies.
+
 ### TO START:
 Begin the virtual environemnt:
 $ workon MOSTregi
