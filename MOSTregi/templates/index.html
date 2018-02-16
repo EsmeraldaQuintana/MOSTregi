@@ -51,25 +51,34 @@
 
       <!-- Page Content Holder -->
       <div id="content">
-
         <nav class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
                 <i class="glyphicon glyphicon-align-left"></i>
-                <span>Toggle Sidebar</span>
+                <!-- <span>Toggle Sidebar</span>-->
               </button>
-              <h3>Museum of South Texas History</h3>
             </div>
-
-            <!--
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <p>Where am I</p>
-            </div>
-          -->
           </div>
         </nav>
-
+        <h3 id="museum-title">Museum of South Texas History</h3>
+          <div id="visit-registration"><p>
+            <h2>Book a tour!     </h2>
+            <form action="/your-name/" method="post">
+              <label for="your_name">Your name: </label>
+              <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+            </form>
+            <form action="/tour-date/" method="post">
+              <label for="tour_date">Tour date: </label>
+              <input id="tour_date" type="text" name="tour_date" value="{{ date }}">
+            </form>
+            <form action="/no_guests/" method="post">
+              <label for="no_guests">Number of guests: </label>
+              <input id="no_guests" type="text" name="no_guests" value="{{ no_guests }}">
+              <input type="submit" value="Submit" class="btn">
+            </form>
+          </p></div>
+          <div class="line"></div>
                 <h2>Filler content! Hooray!</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

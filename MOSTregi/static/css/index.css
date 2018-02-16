@@ -22,12 +22,11 @@ a, a:hover, a:focus {
 }
 
 .navbar {
-    padding: 15px 10px;
+    padding: 0;
     background: #fff;
     border: none;
     border-radius: 0;
-    margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1px;
 }
 
 .navbar-btn, .btn-info {
@@ -152,7 +151,7 @@ a.article, a.article:hover {
 ----------------------------------------------------- */
 #content {
     width: calc(100% - 250px);
-    padding: 40px;
+    padding: 10px 20px 40px;
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
@@ -163,6 +162,39 @@ a.article, a.article:hover {
     width: 100%;
 }
 
+#museum-title {
+  color: hsla(17, 100%, 5%, 0.8);
+  font-size: 70px;
+  line-height: 70px;
+  font-weight: 700;
+  margin: 0 5px 24px;
+  float: left;
+  padding: 20px 10px 50px;
+  margin: 0;
+  /*
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  */
+}
+
+#visit-registration {
+  background: hsla(360, 100%, 100%, 1);
+  border-color: black;
+  padding: 10px;
+  width: 500px;
+}
+
+#visit-registration h2 {
+   color: #f2f2f2;
+   background: hsla(17, 100%, 30%, 0.65);
+   font-size: 35px;
+   line-height: 35px;
+   font-weight: 700;
+   margin: 0 5px 24px;
+   float: left;
+   padding: 10px;
+   margin: 0 5px 24px;
+   width: 400px;
+}
 
 /* ---------------------------------------------------
     MEDIAQUERIES
