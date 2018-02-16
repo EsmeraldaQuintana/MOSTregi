@@ -13,21 +13,20 @@ install virtualenv with pip3! Not pip. Otherwise virtualenv will use python2 as 
 ### BEFORE DEVELOPMENT:
 Start a new virtualenv, make sure you have all required software.
 $ pip install -r requirements.txt
-To get all the dependecies.
+To get all the dependencies.
 
 
 ### TO DEPLOY (see it in browser)
 $ ./deploy.sh
-  If this doesn't work, do this:
-$ chmod +x deploy.sh
-$ ./deploy.sh
-  If that didn't work, ask Esmeralda.
+
+If this doesn't work, do this:
+  $ chmod +x deploy.sh
+  $ ./deploy.sh
+    If that didn't work, ask Esmeralda.
 
 ### ENDING DEVELOPMENT SESSION:
 $ deactivate
   this turns off virtualenv
-$ cd ..
-  Move back to PinotNoir folder.
 $ git add .
 $ git commit -m "Add a detailed commit message!"
 $ git push
