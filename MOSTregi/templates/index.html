@@ -9,10 +9,11 @@
 <html>
   <head>
     <link rel="stylesheet" href="{% static '/css/index.css' %}">
+    <script type="text/javascript" src="{% static '/js/jquery-3.3.1.js' %}"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+
     <title>Museum of South Texas History</title>
 
   </head>
@@ -52,7 +53,7 @@
 
       <!-- Page Content Holder -->
       <div id="content">
-        <!--
+
         <nav class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -60,13 +61,14 @@
                 <i class="glyphicon glyphicon-align-left"></i>
                 <span>Toggle Sidebar</span>
               </button>
+              <h3>Museum of South Texas History</h3>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <p>Where am I</p>
             </div>
           </div>
         </nav>
-        -->
 
                 <h2>Filler content! Hooray!</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -107,10 +109,6 @@
 
       <script type="text/javascript">
               $(document).ready(function () {
-                  $("#sidebar").mCustomScrollbar({
-                      theme: "minimal"
-                  });
-
                   $('#sidebarCollapse').on('click', function () {
                       $('#sidebar, #content').toggleClass('active');
                       $('.collapse.in').toggleClass('in');
