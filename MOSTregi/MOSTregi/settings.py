@@ -18,6 +18,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "MOSTregi/static"),
 ]
 
 # Quick-start development settings - unsuitable for production
@@ -63,6 +64,7 @@ TEMPLATES = [
         'DIRS': [
             # use /PinotNoir/MOSTregi/templates for templates
             os.path.join(PROJECT_DIR, 'templates'),
+            os.path.join(PROJECT_DIR, 'MOSTregi/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
