@@ -3,7 +3,6 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% bootstrap_messages %}
-{% include "home.html" %}
 
 <html>
   <head>
@@ -39,20 +38,21 @@
         </div>
 
         <ul class="list-unstyled components">
-          <li class="active">
-            <a href="#" data-toggle="collapse">Home</a>
+          <li>
+          <!-- <li class="active"> -->
+            <a href="/home/" data-toggle="collapse">Home</a>
           </li>
           <li>
-            <a href="#">Visit Us</a>
+            <a href="/form/">Visit Us</a>
           </li>
           <li>
-            <a href="#">Exhibitions</a>
+            <a href="/exhibits/">Exhibitions</a>
           </li>
           <li>
-            <a href="#">Collections</a>
+            <a href="/collections/">Collections</a>
           </li>
           <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">broken submenu</a>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">broken submenu.<br>mommy will fix you soon. <3</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
               <li><a href="#">Page 1</a></li>
               <li><a href="#">Page 2</a></li>
@@ -66,9 +66,10 @@
           </ul>
       </nav>
 
-      <!-- Page Content Holder -->
+      <!-- CONTENT -->
       <div id="content">
-        <!-- content navbar -->
+
+        <!-- content BUTTON sidebar -->
         <nav class="navbar navbar-default">
             <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
               <i class="glyphicon glyphicon-align-left"></i>
@@ -76,11 +77,20 @@
             </button>
         </nav>
 
+        <!-- content TITLE -->
         <h3 id="museum-title">
           Museum of South Texas History
         </h3>
 
-      </div> <!-- id = content -->
+        <!-- content BLOCK -->
+        {% block 'content' %}
+        <div class="line"></div>
+        <h2>default load page bby :*</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="line"></div>
+        {% endblock %}
+      </div>
     </div>
   </body>
 
