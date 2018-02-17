@@ -1,19 +1,10 @@
-{% extends 'shellTest.html' %}
+{% extends 'index.html' %}
 {% block 'content' %}
-<div id="form"><p>
-          <h2>Book a tour!</h2>
-          <form action="/your-name/" method="post">
-            <label for="your_name">Your name: </label>
-            <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
-          </form>
-          <form action="/tour-date/" method="post">
-            <label for="tour_date">Tour date: </label>
-            <input id="tour_date" type="text" name="tour_date" value="{{ date }}">
-          </form>
-          <form action="/no_guests/" method="post">
-            <label for="no_guests">Number of guests: </label>
-            <input id="no_guests" type="text" name="no_guests" value="{{ no_guests }}">
-            <input type="submit" value="Submit" class="btn">
-          </form>
-        </p></div>
+
+<h2 style="font-size: 30px;">Book a tour!</h2>
+<form action="/your-name/" method="post">
+  <label for="your_name">Your name: </label>
+  <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+</form>
+
 {% endblock %}
