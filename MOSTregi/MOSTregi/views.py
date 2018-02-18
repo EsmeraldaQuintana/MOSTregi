@@ -1,21 +1,17 @@
 from django.shortcuts import render_to_response
+from django.http import Http404
+from django.template import TemplateDoesNotExist
+from django.template import loader
 
 def index(request):
     return render_to_response('index.html')
 
-def form(request):
-    return render_to_response('form.html')
-
-def confirm(request):
-    return render_to_response('confirm.html')
-
-def home(request):
-    return render_to_response('home.html')
-
-def exhibitions(request):
-    return render_to_response('exhibitions.html')
-
-def collections(request):
-    return render_to_response('collections.html')
-#def test(request):
-#    return render_to_response('shellTest.html')
+def fetchHTML(request, title): 
+    title += '.html'
+    try:
+        # print("Attempting to get template %s" % title)
+        t = loader.get_template(title)
+        # print("Return on get_template: %s" % t)
+        return render_to_response(title)
+    except TemplateDoesNotExist:
+        raise Http404
