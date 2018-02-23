@@ -20,7 +20,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    re_path(r'^([a-zA-z]{0,11})/?$', views.fetchHTML),
+    re_path(r'^([a-z]{0,11})/?$', views.fetchHTML),
     path('register/', include('regform.urls')),
     path('admin/', admin.site.urls),
 ]
