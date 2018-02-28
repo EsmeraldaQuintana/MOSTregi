@@ -5,7 +5,7 @@ from django.template import loader, TemplateDoesNotExist
 def index(request):
     return render_to_response('index.html')
 
-def fetchHTML(request, title): 
+def fetchHTML(request, title):
     title += '.html'
     try:
         t = loader.get_template(title)
