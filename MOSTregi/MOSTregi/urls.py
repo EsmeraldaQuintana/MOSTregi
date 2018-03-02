@@ -20,6 +20,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    re_path('admin/?', admin.site.urls),
+    path('admin', views.admin),
+    path('admin/', admin.site.urls),
     re_path(r'^([a-zA-Z]{0,11})/?$', views.fetchHTML),
 ]

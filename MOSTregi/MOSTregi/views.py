@@ -1,9 +1,12 @@
 from django.shortcuts import render_to_response
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.template import loader, TemplateDoesNotExist
 
 def index(request):
     return render_to_response('index.html')
+
+def admin(request):
+    return HttpResponseRedirect("admin/")
 
 def fetchHTML(request, title):
     title += '.html'
