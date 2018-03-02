@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'jquery',
     'phonenumber_field',
+    'django_extensions',
     'events',
 ]
 
@@ -89,9 +90,9 @@ WSGI_APPLICATION = 'MOSTregi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mostregi',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'NAME': 'most',
+        'USER': 'pinotnoir',
+        'PASSWORD': 'pinotnoir',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -122,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 USE_I18N = True
 
