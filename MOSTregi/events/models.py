@@ -1,6 +1,14 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
+class IntegerRangeField(models.IntegerField):
+    def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
+        self.min_value, self.max_value = min_value, max_value
+        models.IntegerField.__init__(self, verbose_name, name, **kwargs)
+    def formfield(self, **kwargs):
+        defaults = {'min_value': self.min_value, 'max_value':self.max_value}
+        defaults.update(kwargs)
+        return super(IntegerRangeField, self).formfield(**defaults)
 
 class registration(models.Model):
     school = models.CharField(max_length=40)
@@ -12,12 +20,5 @@ class registration(models.Model):
     number_attending = IntegerRangeField(min_value=1, max_value=50)
     date_time_recieved = models.DateTimeField('date & time booked', auto_now_add=True)
 
+# print(registration.__dict__)
 
-class IntegerRangeField(models.IntegerField):
-    def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
-        self.min_value, self.max_value = min_value, max_value
-        models.IntegerField.__init__(self, verbose_name, name, **kwargs)
-    def formfield(self, **kwargs):
-        defaults = {'min_value': self.min_value, 'max_value':self.max_value}
-        defaults.update(kwargs)
-        return super(IntegerRangeField, self).formfield(**defaults)
