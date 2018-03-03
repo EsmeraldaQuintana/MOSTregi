@@ -25,7 +25,7 @@ from . import views
 urlpatterns = [
     re_path(r'^favicon.ico$',
         RedirectView.as_view(
-            url=staticfiles_storage.url('favicon.ico'),
+            url=staticfiles_storage.url('img/favicon/favicon.ico'),
             permanent=False),
         name="favicon"
     ),
