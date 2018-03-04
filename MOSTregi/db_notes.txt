@@ -4,17 +4,18 @@ https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your
 # INIT DATABASTE:
 $ sudo su - postgres
 postgres@yakuza:~$ psql
-postgres=# CREATE DATABASE mostregi;
-postgres=# CREATE USER admin WITH PASSWORD 'admin';
-postgres=# ALTER ROLE admin SET client_encoding TO 'utf8';
-postgres=# ALTER ROLE admin SET default_transaction_isolation TO 'read committed';
-postgres=# ALTER ROLE admin SET timezone TO 'EST';
-postgres=# GRANT ALL PRIVILEGES ON DATABASE mostregi TO admin;
+postgres=# CREATE DATABASE most;
+postgres=# CREATE USER pinotnoir WITH PASSWORD 'pinotnoir';
+postgres=# ALTER ROLE pinotnoir SET client_encoding TO 'utf8';
+postgres=# ALTER ROLE pinotnoir SET default_transaction_isolation TO 'read committed';
+postgres=# ALTER ROLE pinotnoir SET timezone TO 'EST';
+postgres=# GRANT ALL PRIVILEGES ON DATABASE most TO pinotnoir;
+postgres=# ALTER ROLE pinotnoir CREATEROLE CREATEDB;
 postgres=# \q
 postgres@yakuza:~$ exit
 
 # CREATE SUPERUSER
 $ python3 manage.py createsuperuser
-admin
+pinotnoir
 quintaen195@potsdam.edu
 pinotnoir
