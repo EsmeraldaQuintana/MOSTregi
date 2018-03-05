@@ -89,13 +89,18 @@ WSGI_APPLICATION = 'MOSTregi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'most',
-        'USER': 'pinotnoir',
-        'PASSWORD': 'pinotnoir',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+   # postgres is hard ;P
+   # 'default': {
+   #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+   #     'NAME': 'most',
+   #     'USER': 'pinotnoir',
+   #     'PASSWORD': 'pinotnoir',
+   #     'HOST': 'localhost',
+   #     'PORT': '',
+   # }
 }
 
 
