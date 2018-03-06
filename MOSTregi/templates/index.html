@@ -62,9 +62,15 @@
        </ul>
           <ul class="list-unstyled CTAs">
             <li><a href="/admin/" class="download">Admin</a></li>
-            <li><a href="/accounts/login" class="download">Login</a></li>
+            <li><a href="/login/" class="download">Login</a></li>
+            {% if user.is_authenticated %}
+              <li>User: {{ user.get_username }}</li>
+              <li><a href="/logout/" class="download">Logout</a></li>
+            {% else %}
+              <li>user.us_authenticated is false!</li>
+            {% endif %}
           </ul>
-      </nav>
+      </nav> <!-- end Sidebar -->
 
       <!-- CONTENT -->
       <div id="content">
@@ -90,7 +96,8 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <div class="line"></div>
         {% endblock %}
-      </div>
+      </div> <!--end CONTENT -->
+
     </div>
   </body>
 
