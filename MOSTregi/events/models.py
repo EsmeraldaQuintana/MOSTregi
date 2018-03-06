@@ -26,5 +26,5 @@ class registration(models.Model):
     def __str__(self):
         return str(self.name) + " " + str(self.date_time_received)
 
-# print(registration.__dict__)
-
+# notes:
+# we can do one-to-one, many-to-one, etc using django's ForeignKey field.
