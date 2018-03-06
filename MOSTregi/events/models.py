@@ -8,7 +8,7 @@ class demo_form(models.Model):
     number_attending = models.IntegerField(
         default = 1, validators=[MaxValueValidator(50), MinValueValidator(1)]
     )
-    date_time_recieved = models.DateTimeField('date & time booked', auto_now_add=True)
+    date_time_received = models.DateTimeField('date & time booked', auto_now_add=True)
 
 class registration(models.Model):
     school = models.CharField(max_length=40)
@@ -20,11 +20,16 @@ class registration(models.Model):
     number_attending = models.IntegerField(
         default = 1, validators=[MaxValueValidator(50), MinValueValidator(1)]
     )
-    date_time_recieved = models.DateTimeField('date & time booked', auto_now_add=True)
+    date_time_received = models.DateTimeField('date & time booked', auto_now_add=True)
     def __ls__(self):
         for field_name in self.__meta.get_all_field_names():
             value = getattr(self, field_name, None)
             yield (field_name, value)
+   
+    # the toString for this object returns
+    #     (name, time received)
+    def __str__(self):
+        return name, date_time_received
 
 # print(registration.__dict__)
 
