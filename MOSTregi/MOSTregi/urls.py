@@ -30,7 +30,8 @@ urlpatterns = [
         name="favicon"
     ),
     path('', views.index, name='index'),
-    re_path(r'^(.*[^/])$', views.redirect_and_add_slash),
+    path('accounts/', include('django.contrib.auth.urls')),
+    # re_path(r'^(.*[^/])$', views.redirect_and_add_slash),
     re_path(r'admin/?', admin.site.urls),
     re_path(r'^([a-zA-Z]{0,11})/?$', views.fetchHTML),
 ]
