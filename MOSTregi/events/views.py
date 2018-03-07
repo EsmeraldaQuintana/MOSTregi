@@ -1,13 +1,12 @@
-from django.shortcuts import render_to_response, redirect, render
+from django.shortcuts import render_to_response, redirect, render, get_object_or_404
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.template import loader, TemplateDoesNotExist
+
 from .models import demo_form
 from .forms import demoForm
 
 from django.utils import timezone
-
-from django.urls import reverse
-
+#from django.urls import reverse
 
 # the new event form view
 def new(request):
@@ -16,17 +15,15 @@ def new(request):
         if form.is_valid():
             post = form.save(request.POST)
             post.save()
-            return redirect(reverse("events:confirm"))
-        else:
-            print("8=========D FORM NOT VALID")
-            form = demoForm()
-            return render(request, 'events/notvalid.html', {'form': form})
+            return render(request, 'events/event_detail.html', {'event': post})
+            #return redirect(reverse("events:confirm"), pk=post.pk)
     else:
         form = demoForm()
     return render(request, 'events/new.html', {'form': form})
 
-def confirm(request):
-    return render_to_response('events/confirm.html')
+def event_detail(request, pk):
+    event = get_object_or_404(demo_form, pk=pk)
+    return render(request, 'events/event_detail.html', {'event': event})
 
 def events_list(request):
     events = demo_form.objects.all().order_by('date_request')

@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% block 'content' %}
+
+<div class="event">
+  <h3>Booking received!</h3>
+  Booked by: {{ event.name }} <br>
+  Received on: {{ event.date_time_received }} <br>
+  Date requested: {{ event.date_request }} <br>
+  Number Attending: {{ event.number_attending }} <br>
+</div>
+
+{% endblock %}

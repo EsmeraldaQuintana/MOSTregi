@@ -21,7 +21,8 @@ class demo_form(models.Model):
         default = 1, validators=[MaxValueValidator(50), MinValueValidator(1)]
     )
     def __str__(self):
-        return str(self.name) + " " + str(self.date_time_received)
+        return "%s, registered on %s" % (self.name,
+            self.date_time_received.strftime("%d.%m.%Y"))
     #def save(self, *args, **kwargs):
     #    if not self.id:
     #        self.date_time_received = timezone.now()
@@ -41,7 +42,11 @@ class registration(models.Model):
         date_and_time = datetime.datetime.combine(self.date_request, self.time_request)
         return date_and_time >= timezone.now()
     def __str__(self):
-        return str(self.name) + " " + str(self.date_time_received)
+        return "%s, booked on %s, for %s%s" % (self.name,
+            self.date_time_received.strftime("%d.%m.%Y"),
+            self.date_request.strftime("%d.%m.%Y "),
+            self.time_request.strftime("%I:%M%p"),
+        )
 
 
 # notes:
