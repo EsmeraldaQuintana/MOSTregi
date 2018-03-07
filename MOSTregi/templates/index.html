@@ -62,16 +62,16 @@
        </ul>
           <ul class="list-unstyled CTAs">
             <li><a href="/admin/" class="download">Admin</a></li>
-            <li><a href="/login/" class="download">Login</a></li>
+            <!-- <li><a href="/login/" class="download">Login</a></li>
             {% if user.is_authenticated %}
               <li>User: {{ user.get_username }}</li>
               <li><a href="/logout/" class="download">Logout</a></li>
             {% else %}
               <li>user.us_authenticated is false!</li>
-            {% endif %}
+            {% endif %} -->
+            <li><a href="{% url 'events:new' %}" class="download">Register (Still testing...)</a></li>
           </ul>
       </nav> <!-- end Sidebar -->
-
       <!-- CONTENT -->
       <div id="content">
 

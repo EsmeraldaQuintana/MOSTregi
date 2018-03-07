@@ -5,15 +5,18 @@ from django.core.validators import MaxValueValidator, MinValueValidator, EmailVa
 
 from django.utils import timezone
 
+import datetime
+
 class AutoDateTimeField(models.DateTimeField):
     def pre_save(self, model_instance, add):
-        print("8888888888 datetime.now:", str(datetime.now()))
-        return datetime.now()
+        # print("in AutoDateTimeField: datetime.now:", str(timezone.now()))
+        return timezone.now()
 
 class demo_form(models.Model):
-    name = models.CharField(max_length=40)
+    name = models.CharField(max_length=40, default="Aaliyah")
     date_time_received = AutoDateTimeField('booked on', default=timezone.now)
-    date_request = models.DateTimeField('booking date requested')
+    date_request = models.DateTimeField('booking date requested',
+        default= (timezone.now() + datetime.timedelta(days=7)) )
     number_attending = models.IntegerField(
         default = 1, validators=[MaxValueValidator(50), MinValueValidator(1)]
     )

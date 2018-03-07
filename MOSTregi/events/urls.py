@@ -13,6 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+app_name = 'events'
+
 from django.contrib import admin
 from django.urls import path, re_path, include
 from django.conf.urls import url
@@ -24,22 +27,10 @@ from . import views
 
 from django.contrib.auth import views as auth_views
 
-
 urlpatterns = [
-    re_path(r'^favicon.ico$',
-        RedirectView.as_view(
-            url=staticfiles_storage.url('img/favicon/favicon.ico'),
-            permanent=False),
-        name="favicon"
-    ),
-    path('', views.index, name='index'),
-    #path('accounts/', include('django.contrib.auth.urls')),
-    path('events/', include('events.urls', 'events')),
-    #path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    #path('logout/', auth_views.LogoutView.as_view(template_name='registration/logged_out.html'), name='logout'),
-    re_path(r'admin/?', admin.site.urls),
-    re_path(r'^(.*[^/])$', views.redirect_and_add_slash),
-    re_path(r'^([a-zA-Z/]{0,50})$', views.fetchHTML),
+    path('confirm', views.confirm, name='confirm'),
+    path('new', views.new, name="new"),
+    re_path(r'^([a-zA-Z/]{0,50})$', views.testCatch),
 ]
 
 from django.conf import settings

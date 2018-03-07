@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block 'content' %}
+
+<html>
+    <p>Hi there! In /templates/events/new.html !</p>
+    <p>It works!</p>
+
+    <h1>New post</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+</html>
+
+{% endblock %}

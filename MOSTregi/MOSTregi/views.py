@@ -26,8 +26,8 @@ def redirect_and_add_slash(request, capture):
     #print("redirecting to ", capture)
     return redirect(capture)
 
-def testCatch(request, capture):
+def testCatch(request, capture="empty"):
     print("========================================")
     print("=========================================")
-    html = "<html><body> %s </body></html>" % capture
+    html = "<html><body> <h1> Captured: ( %s )</h1> </body></html>" % capture
     return HttpResponse(html)
