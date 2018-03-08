@@ -1,4 +1,24 @@
+
+/*
+// REFERENCE FOR EZZIE
+// because she can't remember things
+
+  .algo        selects    class="algo"
+
+  #firstname   selects   id="firstname"
+
+  *            selects   all elements
+
+  element      selects   <element>
+
+more here:
+  https://www.w3schools.com/cssref/css_selectors.asp
+  https://developer.mozilla.org/en-US/docs/Glossary/CSS_Selector
+
+*/
+
 /* ---------------- MAIN ---------------------------------------------------- */
+
 body {
     font-family: 'Playfair Display', serif;
     background: hsla(360, 100%, 100%, 0.5);
@@ -43,6 +63,7 @@ a, a:hover, a:focus {
     border-color: hsl(30, 100%, 10%);
 }
 
+/* the line class divides "posts", literally just a line */
 .line {
     width: 100%;
     height: 1px;
@@ -51,6 +72,7 @@ a, a:hover, a:focus {
 }
 
 /* ---------------- SIDEBAR ------------------------------------------------- */
+
 #sidebar {
     width: 250px;
     position: fixed;
@@ -67,7 +89,7 @@ a, a:hover, a:focus {
     margin-left: -250px;
 }
 
-#sidebar .sidebar-header {
+#sidebar-header {
     padding: 20px;
     background: #5D4037;
 }
@@ -132,7 +154,7 @@ ul.CTAs a {
     font-size: 0.9em !important;
     display: block;
     border-radius: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
 }
 
 a.download {
@@ -150,7 +172,7 @@ a.article, a.article:hover {
 /* ---------------- CONTENT ------------------------------------------------- */
 #content {
     width: calc(100% - 250px);
-    padding: 0px 20px 40px;
+    padding: 0px 20px 20px;
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
@@ -161,6 +183,15 @@ a.article, a.article:hover {
     width: 100%;
 }
 
+#shellblock {
+  padding: 20px;
+  margin: 0;
+  border: 2px dotted;
+  border-color: hsl(360, 0%, 60%);
+  max-width: 1200px;
+}
+
+/* OLD museum-title
 #museum-title {
   color: hsla(17, 100%, 5%, 0.8);
   font-size: 70px;
@@ -174,6 +205,7 @@ a.article, a.article:hover {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   */
 }
+*/
 
 /* ---------------- RESPONSIVE DESIGN -------------------------------------- */
 @media (max-width: 768px) {
@@ -193,11 +225,4 @@ a.article, a.article:hover {
         display: none;
     }
 
-    #museum-title {
-      font-size: 20px;
-      line-height: 20px;
-      padding: 0 0 10px;
-      position: relative;
-      top: -20px;
-    }
 }

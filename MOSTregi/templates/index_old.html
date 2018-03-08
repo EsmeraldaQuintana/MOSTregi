@@ -1,0 +1,106 @@
+<html>
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+  <head>
+    <!-- css -->
+    <link rel="stylesheet" href="{% static '/css/index.css' %}">
+    <!-- jquery -->
+    <script type="text/javascript" src="{% static '/js/jquery-3.3.1.js' %}"></script>
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="{% static '/img/favicon/favicon.ico' %}"/>
+    <!-- handles sidebar collapse -->
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+      });
+    </script>
+    <!-- html boilerplate stuff -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Museum of South Texas History</title>
+  </head>
+
+  <body>
+    <!-- wrapper holds entire page -->
+    <!-- (I don't remember why I did this but it's not hurting anything) -->
+    <div class="wrapper">
+      <!-- Sidebar Holder -->
+      <nav id="sidebar">
+        <div id="sidebar-header">
+          <h3><b>MOST History</b></h3>
+        </div>
+
+        <ul class="list-unstyled components">
+          <li>
+          <!-- <li class="active"> -->
+            <a href="/home/" data-toggle="collapse">Home</a>
+          </li>
+          <li>
+            <a href="/form/">Visit Us</a>
+          </li>
+          <li>
+            <a href="/exhibits/">Exhibitions</a>
+          </li>
+          <li>
+            <a href="/collections/">Collections</a>
+          </li>
+          <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">broken submenu.<br>mommy will fix you soon. <3</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li><a href="#">Page 1</a></li>
+              <li><a href="#">Page 2</a></li>
+              <li><a href="#">Page 3</a></li>
+            </ul>
+          </li>
+       </ul>
+          <ul class="list-unstyled CTAs">
+            <li><a href="/admin/" class="download">Admin</a></li>
+            <!-- <li><a href="/login/" class="download">Login</a></li>
+            {% if user.is_authenticated %}
+              <li>User: {{ user.get_username }}</li>
+              <li><a href="/logout/" class="download">Logout</a></li>
+            {% else %}
+              <li>user.us_authenticated is false!</li>
+            {% endif %} -->
+            <li><a href="{% url 'events:new' %}" class="download">Register (demo event model)</a></li>
+          </ul>
+      </nav> <!-- end Sidebar -->
+
+      <!-- CONTENT -->
+      <div id="content">
+
+        <!-- content BUTTON sidebar -->
+        <nav class="navbar navbar-default">
+            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+              <i class="glyphicon glyphicon-align-left"></i>
+              <!-- <span>Toggle Sidebar</span>-->
+            </button>
+        </nav>
+
+        <!-- content TITLE -->
+        <h3 id="museum-title">
+          Museum of South Texas History
+        </h3><br>
+
+        <!-- content BLOCK -->
+        {% block 'content' %}
+        <div class="line"></div>
+        <h2>default load page bby :*</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="line"></div>
+        {% endblock %}
+      </div> <!--end CONTENT -->
+
+    </div>
+  </body>
+
+</html>
