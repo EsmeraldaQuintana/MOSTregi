@@ -2,10 +2,11 @@ from django.db import models
 from django.db.models import DateTimeField
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import MaxValueValidator, MinValueValidator, EmailValidator
-
 from django.utils import timezone
 
 import datetime
+
+from django.conf import settings
 
 class AutoDateTimeField(models.DateTimeField):
     def pre_save(self, model_instance, add):
@@ -32,7 +33,7 @@ class registration(models.Model):
     name = models.CharField(max_length=40)
     date_time_received = AutoDateTimeField('booked on', default=timezone.now)
     email = models.CharField(max_length=40, validators=[EmailValidator])
-    telephone = PhoneNumberField()
+    telephone = PhoneNumberField(default="11111111111")
     date_request = models.DateField('date requested')
     time_request = models.TimeField('time requested')
     number_attending = models.IntegerField(
