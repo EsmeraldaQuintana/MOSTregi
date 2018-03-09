@@ -13,21 +13,6 @@ class AutoDateTimeField(models.DateTimeField):
         # print("in AutoDateTimeField: datetime.now:", str(timezone.now()))
         return timezone.now()
 
-class demo_form(models.Model):
-    name = models.CharField(max_length=40, default="Aaliyah")
-    date_time_received = AutoDateTimeField('booked on', default=timezone.now)
-    date_request = models.DateTimeField('booking date requested',
-        default= (timezone.now() + datetime.timedelta(days=7)) )
-    number_attending = models.IntegerField(
-        default = 1, validators=[MaxValueValidator(50), MinValueValidator(1)]
-    )
-    def __str__(self):
-        return "%s, registered on %s" % (self.name,
-            self.date_time_received.strftime("%d.%m.%Y"))
-    #def save(self, *args, **kwargs):
-    #    if not self.id:
-    #        self.date_time_received = timezone.now()
-
 def current_hour():
     now = datetime.datetime.now()
     return datetime.time(now.hour, now.minute)
