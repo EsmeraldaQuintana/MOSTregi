@@ -2,7 +2,7 @@
 {% block 'content' %}
 
 <html>
-    <h1>New Booking</h1>
+    <h1 style="padding: 0 0 20px; color: hsl(0, 0%, 30%);">New Booking</h1>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>

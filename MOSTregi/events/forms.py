@@ -1,8 +1,14 @@
 from django import forms
 
-from .models import demo_form
+from .models import BookingRequest
 
-class demoForm(forms.ModelForm):
+class BookingRequestForm(forms.ModelForm):
     class Meta:
-        model = demo_form
-        fields=('name', 'date_request', 'number_attending')
+        model = BookingRequest
+        fields=('name',
+                'email',
+                'telephone',
+                'date_request',
+                'time_request',
+                'number_attending',
+                'school')

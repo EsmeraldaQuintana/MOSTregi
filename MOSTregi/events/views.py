@@ -2,8 +2,8 @@ from django.shortcuts import render_to_response, redirect, render, get_object_or
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.template import loader, TemplateDoesNotExist
 
-from .models import demo_form
-from .forms import demoForm
+from .models import BookingRequest
+from .forms import BookingRequestForm
 
 from django.utils import timezone
 #from django.urls import reverse
@@ -11,14 +11,14 @@ from django.utils import timezone
 # the new event form view
 def new(request):
     if request.method == "POST":
-        form = demoForm(request.POST)
+        form = BookingRequestForm(request.POST)
         if form.is_valid():
             post = form.save(request.POST)
             post.save()
             return render(request, 'events/event_detail.html', {'event': post})
             #return redirect(reverse("events:confirm"), pk=post.pk)
     else:
-        form = demoForm()
+        form = BookingRequestForm
     return render(request, 'events/new.html', {'form': form})
 
 def event_detail(request, pk):

@@ -1,12 +1,44 @@
 {% extends 'index.html' %}
 {% block 'content' %}
+{% load staticfiles %}
 
-<div class="event">
-  <h3>Booking received!</h3>
-  Booked by: {{ event.name }} <br>
-  Received on: {{ event.date_time_received }} <br>
-  Date requested: {{ event.date_request }} <br>
-  Number Attending: {{ event.number_attending }} <br>
+<link rel="stylesheet" href="{% static '/css/event_detail.css' %}">
+<div class="event_detail">
+  <h2>Booking received!</h3>
+
+  <table>
+    <tr>
+      <th>Booked by:</th>
+      <th>{{ event.name }}</th>
+    </tr>
+    <tr>
+      <th>Email:</th>
+      <th>{{ event.email }}</th>
+    </tr>
+    <tr>
+      <th>Received on:</th>
+      <th>{{ event.date_time_received }}</th>
+    </tr>
+    <tr>
+      <th>Date requested:</th>
+      <th>{{ event.date_request }}</th>
+    </tr>
+    <tr>
+      <th style="padding: 0 20px 0 0;">Time requested:</th>
+      <th>{{ event.time_request }}</th>
+    </tr>
+    <tr>
+      <th># Attending:   </th>
+      <th>{{ event.number_attending }}</th>
+    </tr>
+    <tr>
+      <th>School:</th>
+      <th>{{ event.school }}</th>
+    </tr>
+
+
+  </table>
+
 </div>
 
 {% endblock %}

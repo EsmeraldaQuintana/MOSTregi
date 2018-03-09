@@ -8,8 +8,6 @@ from django.apps import apps
 
 # for each django model, make sure it is registered in ./admin.py
 
-from .models import registration
-
 #class RegistrationModelTest(TestCase):
 #    def test_form_completeness(self):
 #       hasattr(self, ls)

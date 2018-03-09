@@ -11,3 +11,7 @@
   border-bottom: 1px dashed #ddd;
   margin: 20px 0 0 0;
 }
+
+.home h1 {
+  font-family: 'Playfair Display', serif;
+}
