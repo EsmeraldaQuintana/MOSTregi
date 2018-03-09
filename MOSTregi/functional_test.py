@@ -19,5 +19,23 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.get('http://localhost:8000')
         print("OK")
 
+    def test_can_view_the_registration_form(self):
+        print(". . . test_can_view_the_registration_form... ")
+        print(". . . > the user can get to the add page")
+        self.browser.get('http://localhost:8000/events/new/')
+
+        print(". . . > the user can see the form")
+        form = self.browser.find_element_by_tag_name('form')
+
+        print(". . . test_can_view_the_registration_form: OK")
+
+def suite():
+    suite = unittest.TestSuite()
+    suite.addTest(NewVisitorTest('test_selenium_webdriver'))
+    suite.addTest(NewVisitorTest('test_can_view_the_registration_form'))
+    return suite
+
 if __name__ == '__main__':
-    unittest.main(warnings='ignore')
+    runner = unittest.TextTestRunner(failfast=True)
+    runner.run(suite())
+    #unittest.main(warnings='ignore')

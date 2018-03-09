@@ -28,3 +28,7 @@ class IndexTest(TestCase):
         self.assertTrue(html.strip().endswith('</html>'))
         self.assertTemplateUsed(response, 'index.html')
         print("OK")
+
+    #def test_can_save_a_POST_requet(self):
+    #    response = self.client.post('/events/new/', id)
+    #    self.assertIn('')
