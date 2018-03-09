@@ -17,8 +17,6 @@ def current_hour():
     now = datetime.datetime.now()
     return datetime.time(now.hour, now.minute)
 
-    print("8====D", datetime.datetime.now())
-
 class BookingRequest(models.Model):
     name = models.CharField(max_length=40)
     date_time_received = AutoDateTimeField('booked on', default=timezone.now)
