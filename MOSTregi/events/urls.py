@@ -28,7 +28,7 @@ from . import views
 urlpatterns = [
     path('new/', views.new, name="new"),
     path('new', views.new),
-    re_path(r'^([a-zA-Z/]{0,50})$', views.testCatch),
+    #re_path(r'^([a-zA-Z/]{0,50})$', views.testCatch),
 ]
 
 from django.conf import settings
