@@ -28,7 +28,8 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('new', views.new, name="new"),
+    path('new/', views.new, name="new"),
+    path('new', views.new),
     re_path(r'^([a-zA-Z/]{0,50})$', views.testCatch),
 ]
 

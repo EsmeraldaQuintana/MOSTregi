@@ -29,7 +29,8 @@ class demo_form(models.Model):
     #        self.date_time_received = timezone.now()
 
 class registration(models.Model):
-    school = models.CharField(max_length=40)
+    # if USE_FORM_DEFAULTS
+    # give default information...
     name = models.CharField(max_length=40)
     date_time_received = AutoDateTimeField('booked on', default=timezone.now)
     email = models.CharField(max_length=40, validators=[EmailValidator])
@@ -39,6 +40,7 @@ class registration(models.Model):
     number_attending = models.IntegerField(
         default = 1, validators=[MaxValueValidator(50), MinValueValidator(1)]
     )
+    school = models.CharField(max_length=40, blank=True)
     def is_upcoming(self):
         date_and_time = datetime.datetime.combine(self.date_request, self.time_request)
         return date_and_time >= timezone.now()

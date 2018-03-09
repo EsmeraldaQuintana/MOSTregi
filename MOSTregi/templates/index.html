@@ -39,7 +39,14 @@
         </div>
         <ul class="list-unstyled CTAs">
           <li><a href="/" class="download">Home</a></li>
+          <li><a href="{% url 'events:new' %}" class="download">New Booking</a></li>
           <li><a href="/admin/" class="download">Django Admin</a></li>
+          <li><a href="" class="download">_________</a></li>
+          <li><a href="" class="download">_________</a></li>
+          <li><a href="" class="download">_________</a></li>
+          <li><a href="" class="download">_________</a></li>
+          <li><a href="" class="download">_________</a></li>
+          <li><a href="" class="download">_________</a></li>
           <!-- <li><a href="/login/" class="download">Login</a></li>
           {% if user.is_authenticated %}
             <li>User: {{ user.get_username }}</li>
@@ -47,35 +54,23 @@
           {% else %}
             <li>user.us_authenticated is false!</li>
           {% endif %} -->
-          <li><a href="{% url 'events:new' %}" class="download">Register (demo event model)</a></li>
-          <li><a href="" class="download">Button (dead)</a></li>
-          <li><a href="" class="download">Button (dead)</a></li>
-          <li><a href="" class="download">Button (dead)</a></li>
-          <li><a href="" class="download">Button (dead)</a></li>
         </ul>
       </nav> <!-- end Sidebar -->
 
+      <!-- content BUTTON sidebar -->
       <!-- CONTENT -->
       <div id="content">
-
-        <!-- content BUTTON sidebar -->
-        <nav class="navbar navbar-default">
+        <!-- took out navbar-default -->
+        <nav class="navbar">
             <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
               <i class="glyphicon glyphicon-align-left"></i>
-              <!-- <span>Toggle Sidebar</span>-->
             </button>
         </nav>
-
         <!-- content TITLE -->
 
         <!-- content BLOCK -->
         <div id="shellblock">
           {% block 'content' %}
-          <h2>default load page bby :*</h2>
-          <p>Welcome blah blah blah blah blah</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <div class="line"></div>
           {% endblock %}
         </div>
       </div> <!--end CONTENT -->

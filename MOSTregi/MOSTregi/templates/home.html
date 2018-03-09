@@ -1,11 +1,56 @@
 {% extends 'index.html' %}
 {% block 'content' %}
+{% load staticfiles %}
 
-<div = "home">
-<h2 style="font-size: 30px;">HOME PAGE</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<link rel="stylesheet" href="{% static '/css/home.css' %}">
+<div class= "home">
+  <h1>MOST Registration</h1>
+  <p>Visit registration software suite for the Museum of South Texas History.</p>
+
+  <div class="line"></div>
+
+  <h3>For now, this homepage will serve as the <strong>README</strong></h3>
+  <h4>It will be a quick start guide later. Maybe. Or a login page.</h4>
+
+  <h3>Current features:</h3>
+  <ul>
+    <li>this README</li>
+    <li>Can register events under "New Booking"
+      <ul>
+        <li>After booking event, you can view the inputted information</li>
+      </ul>
+    </li>
+    <li>Can add/edit/delete events with the Django Administrative Login</li>
+  </ul>
+
+  <h3>Currently working on:</h3>
+  <ul>
+    <li>user authentication
+      <ul>
+        <li>We have added another user, <strong>employee</strong>, but the authentication isn't fully functional.</li>
+      </ul>
+    </li>
+    <li>styling: forms need to look prettier.</li>
+    <li>booking functionality: add, edit, delete.
+      <ul>
+        <li>employees should be given the option to edit the form after registering (in the page following submit)</li>
+        <li>"needs auth" feature for bookings registered online</li>
+        <li>easy views for booking information: this week, this month, etc</li>
+        <li>Museum Event handling: ability to see what bookings coincide with official museum events</li>
+      </ul>
+    </li>
+    <li>finishing this list...</li>
+  </ul>
+
+  <h3>Build Dependencies</h3>
+  <ul>
+    <li>Python3</li>
+    <li>pip3</li>
+    <li>Django >=2</li>
+    <li>django-bootstrap3 >=9</li>
+    <li>django-phonenumber-field >=2.0</li>
+    <li>psycopg2 >=2.7</li>
+  </ul>
 </div>
-<div class="line"></div>
 
 {% endblock %}

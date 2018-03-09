@@ -3,7 +3,7 @@ from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.template import loader, TemplateDoesNotExist
 
 def index(request):
-    return render_to_response('index.html')
+    return render_to_response('home.html')
 
 #def admin(request):
 #    return HttpResponseRedirect("admin/")
