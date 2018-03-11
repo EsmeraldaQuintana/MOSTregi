@@ -1,21 +1,16 @@
 <html>
-{% load staticfiles %}
-{% load bootstrap3 %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-{% bootstrap_messages %}
   <head>
-    <!-- jquery -->
-    <script type="text/javascript" src="{% static '/js/jquery-3.3.1.js' %}"></script>
+    {% load staticfiles %}
+    {% load bootstrap3 %}
     <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static '/img/favicon/favicon.ico' %}"/>
-    <!-- handles sidebar collapse -->
-    {% load bootstrap3 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    {% bootstrap_messages %}
     <!-- css -->
+    {% bootstrap_css %}
     <link rel="stylesheet" href="{% static '/css/index.css' %}">
+    {% bootstrap_messages %}
+    <!-- JS -->
+    <script type="text/javascript" src="{% static '/js/jquery-3.3.1.js' %}"></script>
+    {% bootstrap_javascript %}
     <script type="text/javascript">
       $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
@@ -25,7 +20,6 @@
         });
       });
     </script>
-    <!-- html boilerplate stuff -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
