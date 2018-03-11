@@ -165,11 +165,11 @@ ul.CTAs a {
 
 a.download {
     font-family: 'Noto Sans', sans-serif;
-    background: hsl(16, 15.8%, 80%, 0.9);
+    background: hsla(16, 15.8%, 80%, 0.9);
     /* color: hsl(14.2, 25.7%, 29%); */
     font-weight: bold;
     /* color based off #sidebar background */
-    color: hsl(15.9, 25.4%, 23%);
+    color: hsla(15.9, 25.4%, 23%, 0.9);
 }
 
 a.article, a.article:hover {
