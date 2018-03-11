@@ -4,7 +4,9 @@
 <html>
     <h1 style="padding: 0 0 20px; color: hsl(0, 0%, 30%);">New Booking</h1>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
+      <table>
+        {{ form }}
+      </table>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 

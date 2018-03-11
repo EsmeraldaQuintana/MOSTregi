@@ -5,6 +5,7 @@ from .models import BookingRequest
 class DateInput(forms.DateInput):
     input_type = 'date'
 
+# the appareance is browser dependent!!
 class TimeInput(forms.TimeInput):
     input_type = 'time'
 
