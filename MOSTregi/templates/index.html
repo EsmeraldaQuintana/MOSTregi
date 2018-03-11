@@ -5,13 +5,17 @@
 {% bootstrap_javascript %}
 {% bootstrap_messages %}
   <head>
-    <!-- css -->
-    <link rel="stylesheet" href="{% static '/css/index.css' %}">
     <!-- jquery -->
     <script type="text/javascript" src="{% static '/js/jquery-3.3.1.js' %}"></script>
     <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static '/img/favicon/favicon.ico' %}"/>
     <!-- handles sidebar collapse -->
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% bootstrap_messages %}
+    <!-- css -->
+    <link rel="stylesheet" href="{% static '/css/index.css' %}">
     <script type="text/javascript">
       $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {

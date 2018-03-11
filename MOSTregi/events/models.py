@@ -8,30 +8,30 @@ import datetime
 
 from django.conf import settings
 
+from functools import partial
+
 class AutoDateTimeField(models.DateTimeField):
     def pre_save(self, model_instance, add):
         # print("in AutoDateTimeField: datetime.now:", str(timezone.now()))
         return timezone.now()
 
-def current_hour():
-    now = datetime.datetime.now()
+def current_hour(addhours = 0):
+    now = datetime.datetime.now() + datetime.timedelta(hours=addhours)
     return datetime.time(now.hour, now.minute)
 
 class BookingRequest(models.Model):
-    name = models.CharField(max_length=40)
+    name = models.CharField(max_length=40,)
     date_time_received = AutoDateTimeField('booked on', default=timezone.now)
     email = models.CharField(max_length=40, validators=[EmailValidator])
     telephone = PhoneNumberField()
     #date_request = models.DateField('date requested', default=seven_days_later())
     date_request = models.DateField('date requested', default=timezone.now)
-    time_request = models.TimeField('time requested', default=current_hour)
+    arrival_time = models.TimeField('arrival time', default=current_hour)
+    departure_time = models.TimeField('departure time', default=partial(current_hour, addhours=1))
     number_attending = models.IntegerField(
         default = 1, validators=[MaxValueValidator(50), MinValueValidator(1)]
     )
     school = models.CharField(max_length=40, blank=True)
-    def is_upcoming(self):
-        date_and_time = datetime.datetime.combine(self.date_request, self.time_request)
-        return date_and_time >= timezone.now()
     class Meta:
         verbose_name = 'visitor registration'
         verbose_name_plural = 'visitor registrations'
@@ -39,8 +39,11 @@ class BookingRequest(models.Model):
         return "%s, booked on %s, for %s%s" % (self.name,
             self.date_time_received.strftime("%d.%m.%Y"),
             self.date_request.strftime("%d.%m.%Y "),
-            self.time_request.strftime("%I:%M%p"),
+            self.arrival_time.strftime("%I:%M%p"),
         )
+    def is_upcoming(self):
+        date_and_time = datetime.datetime.combine(self.date_request, self.time_request)
+        return date_and_time >= timezone.now()
 
 # notes:
 # we can do one-to-one, many-to-one, etc using django's ForeignKey field.

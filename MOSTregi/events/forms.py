@@ -2,6 +2,7 @@ from django import forms
 
 from .models import BookingRequest
 
+from django.conf import settings
 class DateInput(forms.DateInput):
     input_type = 'date'
 
@@ -16,10 +17,20 @@ class BookingRequestForm(forms.ModelForm):
                 'email',
                 'telephone',
                 'date_request',
-                'time_request',
+                'arrival_time',
+                'departure_time',
                 'number_attending',
                 'school')
         widgets = {
             'date_request': DateInput(),
-            'time_request': TimeInput(format="%H:%M"),
+            'arrival_time': TimeInput(format="%H:%M"),
+            'departure_time': TimeInput(format="%H:%M"),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(BookingRequestForm, self).__init__(*args, **kwargs)
+        if settings.DEBUG :
+            self.fields['name'].initial = "Danny Devito"
+            self.fields['email'].initial = "dannydevito2@paddys.com"
+            self.fields['telephone'].initial = "646 301 2333"
+            self.fields['school'].initial = "Potsdamn"
