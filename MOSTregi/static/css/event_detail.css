@@ -10,7 +10,11 @@ table, th {
   border: 0px solid purple;
   font-weight: normal;
   font-size: 1.2em;
-  line-height: 1.2em;
+  line-height: 1.5em;
   color: hsl(0, 0%, 30%);
   padding: 4px 2px;
+}
+
+input {
+  width: 300px;
 }

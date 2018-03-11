@@ -1,7 +1,9 @@
 {% extends 'index.html' %}
 {% block 'content' %}
+{% load staticfiles %}
 
 <html>
+    <link rel="stylesheet" href="{% static '/css/new.css' %}">
     <h1 style="padding: 0 0 20px; color: hsl(0, 0%, 30%);">New Booking</h1>
     <form method="POST" class="post-form">{% csrf_token %}
       <table>

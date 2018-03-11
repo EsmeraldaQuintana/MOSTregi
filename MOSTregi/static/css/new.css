@@ -1,0 +1,21 @@
+.event_detail{
+  color: hsl(0, 0%, 30%);
+}
+
+table, th {
+  font-family: 'Noto Sans', sans-serif;
+  table-layout: fixed;
+  #width: 100%;
+  border-collapse: collapse;
+  border: 0px solid purple;
+  font-weight: normal;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  color: hsl(0, 0%, 30%);
+  padding: 4px 2px;
+}
+
+input {
+  width: 300px;
+  margin-left: 15px;
+}
