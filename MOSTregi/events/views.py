@@ -8,14 +8,18 @@ from .forms import BookingRequestForm
 from django.utils import timezone
 #from django.urls import reverse
 
-# the new event form view
+def show_detail(request, pk):
+    event = event = get_object_or_404(BookingRequest, pk=pk)
+    return render(request, 'events/event_detail.html', {'event': event})
+
 def new(request):
     if request.method == "POST":
         form = BookingRequestForm(request.POST)
         if form.is_valid():
             post = form.save(request.POST)
             post.save()
-            return render(request, 'events/event_detail.html', {'event': post})
+            #return render(request, 'events/event_detail.html', {'event': post})
+            return redirect('events:show_detail', pk=post.pk)
             #return redirect(reverse("events:confirm"), pk=post.pk)
         else:
             print("form not valid, form errors: %s, form is bound: %s" % (form.errors.as_data(), form.is_bound))
@@ -25,9 +29,22 @@ def new(request):
         form = BookingRequestForm
     return render(request, 'events/new.html', {'form': form})
 
-def event_detail(request, pk):
-    event = get_object_or_404(demo_form, pk=pk)
-    return render(request, 'events/event_detail.html', {'event': event})
+def edit(request, pk):
+    event = get_object_or_404(BookingRequest, pk=pk)
+    if request.method == "POST":
+        form = BookingRequestForm(request.POST, instance=event)
+        if form.is_valid():
+            post = form.save(request.POST)
+            post.save()
+            return redirect('events:show_detail', pk=post.pk)
+        else:
+            print("form not valid, form errors: %s, form is bound: %s" % (form.errors.as_data(), form.is_bound))
+            data=request.POST.get('date_request')
+            print(data)
+    else:
+        form = BookingRequestForm
+    return render(request, 'events/new.html', {'form': form})
+
 
 #def events_list(request):
 #    events = demo_form.objects.all().order_by('date_request')
