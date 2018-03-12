@@ -1,8 +1,11 @@
 {% extends 'index.html' %}
-{% block 'content' %}
 {% load staticfiles %}
 
+{% block extrahead %}
 <link rel="stylesheet" href="{% static '/css/event_detail.css' %}">
+{% endblock %}
+
+{% block 'content' %}
 <div class="event_detail">
   <h2>Booking received!</h3>
 

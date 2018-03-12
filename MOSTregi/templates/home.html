@@ -1,8 +1,11 @@
 {% extends 'index.html' %}
-{% block 'content' %}
 {% load staticfiles %}
 
+{% block extrahead %}
 <link rel="stylesheet" href="{% static '/css/home.css' %}">
+{% endblock %}
+
+{% block 'content' %}
 <div class= "home">
   <h1 style="font-family: 'Playfair Display', serif;">MOST History Event Manager:
     <span style="font-family: 'Noto Sans', sans-serif; font-weight: bold">a README</span>
