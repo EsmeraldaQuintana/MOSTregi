@@ -2,8 +2,6 @@ from django import forms
 
 from .models import BookingRequest
 
-from .select_time_widget import SelectTimeWidget
-
 from django.conf import settings
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -25,8 +23,8 @@ class BookingRequestForm(forms.ModelForm):
                 'school')
         widgets = {
             'date_request': DateInput(),
-            'arrival_time': SelectTimeWidget(twelve_hr=True, use_seconds=False, minute_step=30),
-            'departure_time': SelectTimeWidget(twelve_hr=True, use_seconds=False, minute_step=30),
+            'arrival_time': TimeInput(format="%H:%M"),
+            'departure_time': TimeInput(format="%H:%M"),
         }
 
     def __init__(self, *args, **kwargs):
