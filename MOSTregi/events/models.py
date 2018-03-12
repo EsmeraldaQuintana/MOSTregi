@@ -3,11 +3,9 @@ from django.db.models import DateTimeField
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import MaxValueValidator, MinValueValidator, EmailValidator
 from django.utils import timezone
-
-import datetime
-
 from django.conf import settings
 
+import datetime
 from functools import partial
 
 class AutoDateTimeField(models.DateTimeField):
@@ -26,12 +24,14 @@ class BookingRequest(models.Model):
     telephone = PhoneNumberField()
     #date_request = models.DateField('date requested', default=seven_days_later())
     date_request = models.DateField('date requested', default=timezone.now)
-    arrival_time = models.TimeField('arrival time', default=current_hour)
-    departure_time = models.TimeField('departure time', default=partial(current_hour, addhours=1))
+    # arrival_time = models.TimeField('arrival time', default=current_hour)
+    # departure_time = models.TimeField('departure time', default=partial(current_hour, addhours=1))
+    arrival_time = models.TimeField('arrival time')
+    departure_time = models.TimeField('departure time')
     number_attending = models.IntegerField(
         default = 1, validators=[MaxValueValidator(50), MinValueValidator(1)]
     )
-    school = models.CharField(max_length=40, blank=True)
+    school = models.CharField(max_length=50, blank=True)
     class Meta:
         verbose_name = 'visitor registration'
         verbose_name_plural = 'visitor registrations'
