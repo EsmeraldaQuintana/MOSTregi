@@ -1,14 +1,21 @@
+# python imports
+import datetime
+from functools import partial
+
+# django imports
 from django import forms
-
-from .models import BookingRequest
-
 from django.conf import settings
+
+# project imports
+from .models import BookingRequest
+from .select_time_widget import SelectTimeWidget
+
+def current_hour(addhours = 0):
+    now = datetime.datetime.now() + datetime.timedelta(hours=addhours)
+    return datetime.time(now.hour, now.minute)
+
 class DateInput(forms.DateInput):
     input_type = 'date'
-
-# the appareance is browser dependent!!
-class TimeInput(forms.TimeInput):
-    input_type = 'time'
 
 class BookingRequestForm(forms.ModelForm):
     class Meta:
@@ -23,14 +30,21 @@ class BookingRequestForm(forms.ModelForm):
                 'school')
         widgets = {
             'date_request': DateInput(),
-            'arrival_time': TimeInput(format="%H:%M"),
-            'departure_time': TimeInput(format="%H:%M"),
+            'arrival_time': SelectTimeWidget(twelve_hr=True, use_seconds=False, minute_step=30),
+            'departure_time': SelectTimeWidget(twelve_hr=True, use_seconds=False, minute_step=30),
         }
 
     def __init__(self, *args, **kwargs):
         super(BookingRequestForm, self).__init__(*args, **kwargs)
+        self.fields['arrival_time'].initial = current_hour
+        self.fields['departure_time'].initial = partial(current_hour, addhours=1)
         if settings.DEBUG :
             self.fields['name'].initial = "Danny Devito"
             self.fields['email'].initial = "dannydevito2@paddys.com"
             self.fields['telephone'].initial = "646 301 2333"
             self.fields['school'].initial = "Potsdamn"
+
+# vvv replaced by SelectTimeWidget!
+# the appareance is browser dependent!!
+#class TimeInput(forms.TimeInput):
+#    input_type = 'time'
