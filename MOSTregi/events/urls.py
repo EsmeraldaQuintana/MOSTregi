@@ -30,28 +30,3 @@ urlpatterns = [
     path('new', views.new),
     #re_path(r'^([a-zA-Z/]{0,50})$', views.testCatch),
 ]
-
-from django.conf import settings
-from os import listdir, walk
-from os.path import *
-
-def files_from_dir(directory):
-    result = []
-    for root, directories, filenames in walk(directory):
-        for directory in directories:
-            print()
-        for filename in filenames:
-            result.append(filename)
-    return result
-
-def files_from_list_of_dir(dir_list):
-    result = []
-    if not dir_list:
-        return result
-    for folder in dir_list:
-        print("calling files_from_dir on ", folder)
-        result.extend(files_from_dir(folder))
-    return result
-
-# what we actually want to do is generate a list of static files that end in .html
-# and if (w/e).html fits it, call views.fetchHTML

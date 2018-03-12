@@ -35,13 +35,13 @@ urlpatterns = [
     ),
     re_path(r'^admin/', admin.site.urls),
     path('', views.index, name='index'),
-    #path('accounts/', include('django.contrib.auth.urls')),
     path('events/', include('events.urls', 'events')),
-    #path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    #path('logout/', auth_views.LogoutView.as_view(template_name='registration/logged_out.html'), name='logout'),
-    #re_path(r'admin/?', admin.site.urls),
     re_path(r'^(.*[^/])$', views.redirect_and_add_slash),
     re_path(r'^([a-zA-Z/]{0,50})$', views.fetchHTML),
+    #re_path(r'admin/?', admin.site.urls),
+    #path('accounts/', include('django.contrib.auth.urls')),
+    #path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    #path('logout/', auth_views.LogoutView.as_view(template_name='registration/logged_out.html'), name='logout'),
 ]
 
 from django.conf import settings
