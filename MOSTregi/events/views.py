@@ -17,6 +17,10 @@ def new(request):
             post.save()
             return render(request, 'events/event_detail.html', {'event': post})
             #return redirect(reverse("events:confirm"), pk=post.pk)
+        else:
+            print("form not valid, form errors: %s, form is bound: %s" % (form.errors.as_data(), form.is_bound))
+            data=request.POST.get('date_request')
+            print(data)
     else:
         form = BookingRequestForm
     return render(request, 'events/new.html', {'form': form})

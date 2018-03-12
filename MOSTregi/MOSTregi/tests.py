@@ -5,24 +5,22 @@ from django.http import HttpRequest
 
 # in MOSTregi/MOSTregi/test.py
 
-class HomePageTest(TestCase):
-
+class LandingPageTest(TestCase):
     def test_root_url_resolves_to_index_view(self):
-        print(" . . running test_root_url_resolves_to_index_view: ", end="")
+        print("MOSTregi/test.py > test_root_url_resolves_to_index_view: ", end="")
         found = resolve('/')
         self.assertEqual(found.func, index)
         print("OK")
 
-    def check_index_HTML_template(self):
-        print(" . . check_index_HTML_template: ", end="")
+    def test_home_template(self):
+        print("MOSTregi/test.py > test_home_template: ", end="")
         response = self.client.get('/')
-        html.response.content.decode('utf8')
+        html = response.content.decode('utf8')
+        self.assertTemplateUsed(response, 'home.html')
         self.assertTrue(html.strip().startswith('<html>'))
-        self.assertIn('<script type="text/javascript" src="{% static \'/js/jquery-3.3.1.js\' %}"></script>')
-        self.assertIn('{% load staticfiles %}')
-        self.assertIn('{% load bootstrap3 %}')
-        self.assertIn('{% bootstrap_css %}')
-        self.assertIn('{% bootstrap_javascript %}')
-        self.assertIn('{% bootstrap_messages %}')
+        self.assertIn('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">', html)
+        self.assertIn('<link rel="stylesheet" href="/static/css/index.css">', html)
+        self.assertIn('<script type="text/javascript" src="/static/js/jquery-3.3.1.js"></script>', html)
+        self.assertIn('<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>', html)
         self.assertTrue(html.strip().endswith('</html>'))
         print("OK")

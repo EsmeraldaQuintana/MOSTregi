@@ -23,7 +23,7 @@ class BookingRequest(models.Model):
     email = models.CharField(max_length=40, validators=[EmailValidator])
     telephone = PhoneNumberField()
     #date_request = models.DateField('date requested', default=seven_days_later())
-    date_request = models.DateField('date requested', default=timezone.now)
+    date_request = models.DateField('date requested')
     # arrival_time = models.TimeField('arrival time', default=current_hour)
     # departure_time = models.TimeField('departure time', default=partial(current_hour, addhours=1))
     arrival_time = models.TimeField('arrival time')

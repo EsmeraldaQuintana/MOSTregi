@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from seleniumrequests import Firefox
 import time
 import unittest
 
@@ -26,6 +27,30 @@ class NewVisitorTest(unittest.TestCase):
 
         print(". . . > the user can see the form")
         form = self.browser.find_element_by_tag_name('form')
+
+        # FORM FIELDS TESTS
+        print(". . . > the user can see the name field")
+        self.browser.find_element_by_id("id_name")
+        print(". . . > .................... email field")
+        self.browser.find_element_by_id("id_email")
+        print(". . . > .................... telephone field")
+        self.browser.find_element_by_id("id_telephone")
+        print(". . . > .................... date request field")
+        self.browser.find_element_by_id("id_date_request")
+        print(". . . > .................... arrival time field")
+        self.browser.find_element_by_id("id_arrival_time")
+        print(". . . > .................... departure time field")
+        self.browser.find_element_by_id("id_departure_time")
+        print(". . . > .................... number_attending field")
+        self.browser.find_element_by_id("id_number_attending")
+        print(". . . > .................... school field")
+        self.browser.find_element_by_id("id_school")
+
+        print(". . . > the user can submit information on form")
+        self.fail('FINISH THE TEST')
+        #response = webdriver.request('POST', '/events/new/', data={})
+        #print(response)
+        #self.assertIn('Devito', response.content.decode())
 
         print(". . . test_can_view_the_registration_form: OK")
 
