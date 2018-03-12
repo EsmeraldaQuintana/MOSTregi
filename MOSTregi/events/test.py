@@ -92,6 +92,25 @@ class AddEventPageTest(TestCase):
         self.assertIn('1', html)
         print("OK")
 
+    def test_can_edit_after_submission(self):
+        print("events/test.py > test_form_saving: ", end="")
+        response = self.client.get('/events/new/')
+        response = self.client.post('/events/new/',
+                                    data={'name': 'person',
+                                                 'email': 'person@personcom.com',
+                                                 'telephone': '6463012333',
+                                                 'date_request': datetime.date.today(),
+                                                 'arrival_time': current_hour(),
+                                                 'departure_time': current_hour(addhours=1),
+                                                 'number_attending': 1,
+                                                 'school': 'p',
+                                                })
+        self.assertTemplateUsed(response, 'events/event_detail.html')
+        response = self.client.get('/events/edit/')
+        self.assertTemplateUsed(response, 'events/event_edit.html')
+        html = response.content.decode('utf8')
+        print("OK")
+
 # from django.apps import apps
 # # from .admin import
 #
