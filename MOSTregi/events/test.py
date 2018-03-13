@@ -1,5 +1,6 @@
 # python imports
 import datetime
+import unittest
 
 # django imports
 from django.test import TestCase
@@ -49,16 +50,20 @@ class AddEventPageTest(TestCase):
     def test_event_detail_template(self):
         print("events/test.py > test_event_detail_template: ", end="")
         response = self.client.get('/events/new/')
+        date_request = datetime.date(2018, 3, 13)
         response = self.client.post('/events/new/',
                                     data={'name': 'person',
                                                  'email': 'person@personcom.com',
                                                  'telephone': '6463012333',
-                                                 'date_request': datetime.date.today(),
+                                                 'date_request': date_request,
                                                  'arrival_time': current_hour(),
                                                  'departure_time': current_hour(addhours=1),
                                                  'number_attending': 1,
-                                                 'school': 'p',
-                                                })
+                                                 'school': 'Peopleveristy',
+                                                },
+                                    follow=True)
+        # note to self: post(..., follow=True) means follow the redirect
+        # print("\n %s \n" % response.content)
         html = response.content.decode('utf8')
         self.assertTemplateUsed(response, 'events/event_detail.html')
         self.assertTrue(html.strip().startswith('<html>'))
@@ -66,10 +71,15 @@ class AddEventPageTest(TestCase):
         self.assertIn('<link rel="stylesheet" href="/static/css/index.css">', html)
         self.assertIn('<script type="text/javascript" src="/static/js/jquery-3.3.1.js"></script>', html)
         self.assertIn('<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>', html)
+        self.assertIn('person@personcom.com', html)
+        self.assertIn('6463012333', html)
+        self.assertIn('March 13, 2018', html)
+        self.assertIn('1', html)
+        self.assertIn('Peopleveristy', html)
         self.assertTrue(html.strip().endswith('</html>'))
         print("OK")
 
-
+    @unittest.skip("unfinished")
     def test_form_saving(self):
         print("events/test.py > test_form_saving: ", end="")
         response = self.client.get('/events/new/')
@@ -92,6 +102,7 @@ class AddEventPageTest(TestCase):
         self.assertIn('1', html)
         print("OK")
 
+    @unittest.skip("unfinished")
     def test_can_edit_after_submission(self):
         print("events/test.py > test_form_saving: ", end="")
         response = self.client.get('/events/new/')
