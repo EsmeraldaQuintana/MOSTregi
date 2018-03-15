@@ -19,7 +19,6 @@ class AddEventPageTest(TestCase):
         self.assertEqual(found.func, new)
         print("OK")
 
-    @unittest.skip("")
     def test_new_template(self):
         print("events/test.py > test_new_template: ", end="")
         response = self.client.get('/events/new/')
@@ -34,7 +33,7 @@ class AddEventPageTest(TestCase):
         print("OK")
 
     def test_BookingRequestForm(self):
-        print("events/test.py > test_BookingRequestForm:", end="")
+        print("events/test.py > test_BookingRequestForm: ", end="")
         form_data = {'name': 'poo',
                      'email': 'poo@pooland.poo',
                      'telephone': '6463012333',
@@ -49,7 +48,7 @@ class AddEventPageTest(TestCase):
                      'school': 'p',
                     }
         form = BookingRequestForm(data=form_data)
-        print(form.errors)
+        # print(form.errors)
         self.assertTrue(form.is_valid())
         print("OK")
 
@@ -105,7 +104,7 @@ class AddEventPageTest(TestCase):
         self.assertTemplateUsed(response, 'events/event_detail.html')
         # print(response.context)
         html = response.content.decode('utf8')
-        print(html)
+        # print(html)
         self.assertIn('person@personcom.com', html)
         self.assertIn('6463012333', html)
         self.assertIn('March 26, 2018', html)
@@ -114,9 +113,8 @@ class AddEventPageTest(TestCase):
         self.assertIn('Peopleveristy', html)
         print("OK")
 
-    @unittest.skip("FINISH MEEE")
     def test_can_edit_after_submission(self):
-        print("events/test.py > test_form_saving: ", end="")
+        print("events/test.py > test_can_edit_after_submission: ", end="")
         response = self.client.get('/events/new/')
         response = self.client.post('/events/new/',
                                     data={'name': 'person',
@@ -133,20 +131,27 @@ class AddEventPageTest(TestCase):
                                                  'school': 'Personschoolversity',
                                                 },
                                     follow=True)
-        # currently on event detail page
         html = response.content.decode('utf8')
         url = re.search(r"(/events/edit/[0-9]+/)", html)
-        if url:
-            # print(url.group(0))
-            response = self.client.get(url.group(0), follow=True)
-            # print(response)
-        else:
-            self.fail("could not find /events/edit/[0-9]+/ on page")
+        response = self.client.get(url.group(0), follow=True)
         html = response.content.decode('utf8')
-        # print("\n%s\n" % html)
-        # self.assertTemplateUsed(response, 'events/new.html')
-        # print(response.context[-1]['object_list'])
-        # now I must assert that I can submit information
+        self.assertTemplateUsed(response, 'events/new.html')
+        response = self.client.post('/events/new/',
+                                    data={'name': 'person',
+                                                 'email': 'person@personcom.com',
+                                                 'telephone': '6463012333',
+                                                 'date_request': datetime.date(2018, 3, 13),
+                                                 'arrival_time_hour': '07',
+                                                 'arrival_time_minute': '30',
+                                                 'arrival_time_meridiem': 'p.m.',
+                                                 'departure_time_hour': '3',
+                                                 'departure_time_minute': '30',
+                                                 'departure_time_meridien': 'a.m',
+                                                 'number_attending': 1,
+                                                 'school': 'Personschoolversity',
+                                                },
+                                    follow=True)
+        self.assertTemplateUsed(response, 'events/event_detail.html')
         print("OK")
 
 # from django.apps import apps
