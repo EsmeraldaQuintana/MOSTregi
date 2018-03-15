@@ -24,3 +24,9 @@ class LandingPageTest(TestCase):
         self.assertIn('<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>', html)
         self.assertTrue(html.strip().endswith('</html>'))
         print("OK")
+
+    def test_can_travel_to_events_urls(self):
+        print("MOSTregi/test.py > test_can_travel_to_events_urls: ", end="")
+        response = self.client.get('/events/')
+        self.assertTrue(response.status_code == 200)
+        print("OK")

@@ -45,6 +45,9 @@ def edit(request, pk):
         form = BookingRequestForm
     return render(request, 'events/new.html', {'form': form})
 
+def events_landing(request):
+    html = "<html><body><h1> landing page </h1></body></html>"
+    return HttpResponse(html)
 
 #def events_list(request):
 #    events = demo_form.objects.all().order_by('date_request')
