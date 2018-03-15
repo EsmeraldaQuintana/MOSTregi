@@ -32,7 +32,7 @@ class AddEventPageTest(TestCase):
         self.assertTrue(html.strip().endswith('</html>'))
         print("OK")
 
-    def test_BookingRequestForm(self):
+    def test_BookingRequest_form(self):
         print("events/test.py > test_BookingRequestForm: ", end="")
         form_data = {'name': 'poo',
                      'email': 'poo@pooland.poo',
@@ -48,7 +48,6 @@ class AddEventPageTest(TestCase):
                      'school': 'p',
                     }
         form = BookingRequestForm(data=form_data)
-        # print(form.errors)
         self.assertTrue(form.is_valid())
         print("OK")
 
@@ -71,7 +70,6 @@ class AddEventPageTest(TestCase):
                                                 },
                                     follow=True)
         # note to self: post(..., follow=True) means follow the redirect
-        # print("\n %s \n" % response.content)
         html = response.content.decode('utf8')
         self.assertTemplateUsed(response, 'events/event_detail.html')
         self.assertTrue(html.strip().startswith('<html>'))
@@ -100,11 +98,8 @@ class AddEventPageTest(TestCase):
                                                  'school': 'Peopleveristy',
                                                 },
                                     follow=True)
-        # arrival_time_hour=07&arrival_time_minute=00&arrival_time_meridiem=a.m.
         self.assertTemplateUsed(response, 'events/event_detail.html')
-        # print(response.context)
         html = response.content.decode('utf8')
-        # print(html)
         self.assertIn('person@personcom.com', html)
         self.assertIn('6463012333', html)
         self.assertIn('March 26, 2018', html)
@@ -131,9 +126,16 @@ class AddEventPageTest(TestCase):
                                                  'school': 'Personschoolversity',
                                                 },
                                     follow=True)
+        given_pk = re.search(r"(?<=/events/show_detail/)(([0-9]+)(?=/))",
+                             response.request['PATH_INFO']).group(0)
         html = response.content.decode('utf8')
-        url = re.search(r"(/events/edit/[0-9]+/)", html)
-        response = self.client.get(url.group(0), follow=True)
+        edit_url = re.search(r"(/events/edit/[0-9]+/)", html).group(0)
+        pk = re.search(r"(?<=/events/edit/)(([0-9]+)(?=/))",html).group(0)
+        # check that we are editing the object we just saved
+        if pk != given_pk:
+            print("%s != %s" % (pk, given_pk))
+            self.fail("Form entry edited is not the same as the entry submitted!")
+        response = self.client.get(edit_url, follow=True)
         html = response.content.decode('utf8')
         self.assertTemplateUsed(response, 'events/new.html')
         response = self.client.post('/events/new/',
@@ -153,19 +155,3 @@ class AddEventPageTest(TestCase):
                                     follow=True)
         self.assertTemplateUsed(response, 'events/event_detail.html')
         print("OK")
-
-# from django.apps import apps
-# # from .admin import
-#
-# # for each django model, make sure it is registered in ./admin.py
-#
-# #class RegistrationModelTest(TestCase):
-# #    def test_form_completeness(self):
-# #       hasattr(self, ls)
-#
-# #class AdminSiteRegisterTest(TestCase):
-# #    app = apps.get_app_config('events')
-# #    for model in app.get_models():
-# #        print(model.__name__)
-#     #def test_nothing(self):
-#        # self.fail("Test not finished...")
