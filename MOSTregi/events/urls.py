@@ -26,6 +26,7 @@ from django.views.generic.base import RedirectView
 from . import views
 
 urlpatterns = [
+    path('', views.events_landing, name="events_landing"),
     path('new/', views.new, name="new"),
     re_path(r'edit/(?P<pk>\d+)/', views.edit, name="edit"),
     re_path(r'show_detail/(?P<pk>\d+)/', views.show_detail, name="show_detail")
