@@ -156,9 +156,8 @@ class AddEventPageTest(TestCase):
         self.assertTemplateUsed(response, 'events/event_detail.html')
         print("OK")
 
-    @unittest.skip("Unfinished!")
     def test_event_list(self):
-        print("events/test.py > test_can_edit_after_submission: ", end="")
+        print("events/test.py > test_event_list: ", end="")
         response = self.client.post('/events/new/',
                                     data={'name': 'person1',
                                                  'email': 'person@personcom.com',
@@ -204,6 +203,17 @@ class AddEventPageTest(TestCase):
                                                  'school': 'Personschoolversity',
                                                 },
                                     follow=True)
-        response = self.client.get('/events/events_list')
+        response = self.client.get('/events/all/')
+        html = response.content.decode('utf8')
         self.assertTrue(response.status_code != 404)
+        self.assertTemplateUsed(response, 'events/event_list.html')
+        self.assertTrue(html.strip().startswith('<html>'))
+        self.assertIn('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">', html)
+        self.assertIn('<link rel="stylesheet" href="/static/css/index.css">', html)
+        self.assertIn('<script type="text/javascript" src="/static/js/jquery-3.3.1.js"></script>', html)
+        self.assertIn('<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>', html)
+        self.assertTrue(html.strip().endswith('</html>'))
+        self.assertIn('person1', html)
+        self.assertIn('person2', html)
+        self.assertIn('person3', html)
         print("OK")
