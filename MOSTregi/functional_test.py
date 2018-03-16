@@ -55,12 +55,12 @@ class NewVisitorTest(unittest.TestCase):
         name = self.browser.find_element_by_css_selector('input#id_date_request')
         name.send_keys("")
         self.browser.find_element_by_css_selector('button.save').click()
-        print(self.browser.current_url)
+        # print(self.browser.current_url)
         print(". . . test_can_view_the_registration_form: OK")
 
 def suite():
     suite = unittest.TestSuite()
-    # suite.addTest(NewVisitorTest('test_selenium_webdriver'))
+    suite.addTest(NewVisitorTest('test_selenium_webdriver'))
     suite.addTest(NewVisitorTest('test_can_register_event'))
     return suite
 
