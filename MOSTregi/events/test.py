@@ -10,7 +10,7 @@ from django.http import HttpRequest
 
 # project imports
 from .views import new
-from .forms import BookingRequestForm, current_hour
+from .forms import BookingRequestForm
 
 class AddEventPageTest(TestCase):
     def test_new_resolves_to_new_view(self):

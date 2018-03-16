@@ -1,9 +1,8 @@
 from django.test import TestCase
 from django.urls import resolve
-from MOSTregi.views import index
 from django.http import HttpRequest
 
-# in MOSTregi/MOSTregi/test.py
+from .views import index
 
 class LandingPageTest(TestCase):
     def test_root_url_resolves_to_index_view(self):

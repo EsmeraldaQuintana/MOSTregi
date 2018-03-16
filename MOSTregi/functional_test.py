@@ -20,7 +20,7 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.get('http://localhost:8000')
         print("OK")
 
-    def test_can_view_the_registration_form(self):
+    def test_can_register_event(self):
         print(". . . test_can_view_the_registration_form... ")
         print(". . . > the user can get to the add page")
         self.browser.get('http://localhost:8000/events/new/')
@@ -38,26 +38,30 @@ class NewVisitorTest(unittest.TestCase):
         print(". . . > .................... date request field")
         self.browser.find_element_by_id("id_date_request")
         print(". . . > .................... arrival time field")
-        self.browser.find_element_by_id("id_arrival_time")
+        self.browser.find_element_by_id("id_arrival_time_hour")
         print(". . . > .................... departure time field")
-        self.browser.find_element_by_id("id_departure_time")
+        self.browser.find_element_by_id("id_departure_time_hour")
         print(". . . > .................... number_attending field")
         self.browser.find_element_by_id("id_number_attending")
         print(". . . > .................... school field")
         self.browser.find_element_by_id("id_school")
 
-        print(". . . > the user can submit information on form")
-        self.fail('FINISH THE TEST')
-        #response = webdriver.request('POST', '/events/new/', data={})
-        #print(response)
-        #self.assertIn('Devito', response.content.decode())
-
+        name = self.browser.find_element_by_css_selector('input#id_name')
+        name.send_keys("Danny Burrito")
+        name = self.browser.find_element_by_css_selector('input#id_email')
+        name.send_keys("person@webbersitorino.com")
+        name = self.browser.find_element_by_css_selector('input#id_telephone')
+        name.send_keys("6463012333")
+        name = self.browser.find_element_by_css_selector('input#id_date_request')
+        name.send_keys("")
+        self.browser.find_element_by_css_selector('button.save').click()
+        print(self.browser.current_url)
         print(". . . test_can_view_the_registration_form: OK")
 
 def suite():
     suite = unittest.TestSuite()
-    suite.addTest(NewVisitorTest('test_selenium_webdriver'))
-    suite.addTest(NewVisitorTest('test_can_view_the_registration_form'))
+    # suite.addTest(NewVisitorTest('test_selenium_webdriver'))
+    suite.addTest(NewVisitorTest('test_can_register_event'))
     return suite
 
 if __name__ == '__main__':

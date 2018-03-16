@@ -53,6 +53,9 @@ def events_landing(request):
     html = "<html><body><h1> landing page </h1></body></html>"
     return HttpResponse(html)
 
+# =============================================
+#  code graveyard
+# =============================================
 #def events_list(request):
 #    events = demo_form.objects.all().order_by('date_request')
 #    return render_to_response('events/events_list.html', {'events': events})

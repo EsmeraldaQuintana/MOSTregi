@@ -1,9 +1,17 @@
 #!/bin/zsh
-echo "!!! makemigrations:" &&
+echo "==============================================" &&
+echo "  makemigrations                             |" &&
+echo "==============================================" &&
 python3 manage.py makemigrations &&
-echo "!!! migrate:" &&
+echo "==============================================" &&
+echo "  migrate                                    |" &&
+echo "==============================================" &&
 python3 manage.py migrate &&
-echo "!!! test:" &&
+echo "==============================================" &&
+echo "  test                                       |" &&
+echo "==============================================" &&
 python3 manage.py test &&
-echo "!!! runserver:" &&
+echo "==============================================" &&
+echo "  runserver                                  |" &&
+echo "==============================================" &&
 python3 manage.py runserver

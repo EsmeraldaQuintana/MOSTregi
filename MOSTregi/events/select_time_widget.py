@@ -3,6 +3,8 @@
 # https://djangosnippets.org/snippets/1202/
 # bradmontgomery , 2008
 #
+# modified to support Python3
+#
 
 import re
 from django.forms.widgets import Widget, Select
