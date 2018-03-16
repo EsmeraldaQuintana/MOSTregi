@@ -155,3 +155,55 @@ class AddEventPageTest(TestCase):
                                     follow=True)
         self.assertTemplateUsed(response, 'events/event_detail.html')
         print("OK")
+
+    @unittest.skip("Unfinished!")
+    def test_event_list(self):
+        print("events/test.py > test_can_edit_after_submission: ", end="")
+        response = self.client.post('/events/new/',
+                                    data={'name': 'person1',
+                                                 'email': 'person@personcom.com',
+                                                 'telephone': '6463012333',
+                                                 'date_request': datetime.date(2018, 3, 13),
+                                                 'arrival_time_hour': '07',
+                                                 'arrival_time_minute': '30',
+                                                 'arrival_time_meridiem': 'p.m.',
+                                                 'departure_time_hour': '3',
+                                                 'departure_time_minute': '30',
+                                                 'departure_time_meridien': 'a.m',
+                                                 'number_attending': 1,
+                                                 'school': 'Personschoolversity',
+                                                },
+                                    follow=True)
+        response = self.client.post('/events/new/',
+                                    data={'name': 'person2',
+                                                 'email': 'person@personcom.com',
+                                                 'telephone': '6463012333',
+                                                 'date_request': datetime.date(2018, 3, 13),
+                                                 'arrival_time_hour': '07',
+                                                 'arrival_time_minute': '30',
+                                                 'arrival_time_meridiem': 'p.m.',
+                                                 'departure_time_hour': '3',
+                                                 'departure_time_minute': '30',
+                                                 'departure_time_meridien': 'a.m',
+                                                 'number_attending': 1,
+                                                 'school': 'Personschoolversity',
+                                                },
+                                    follow=True)
+        response = self.client.post('/events/new/',
+                                    data={'name': 'person3',
+                                                 'email': 'person@personcom.com',
+                                                 'telephone': '6463012333',
+                                                 'date_request': datetime.date(2018, 3, 13),
+                                                 'arrival_time_hour': '07',
+                                                 'arrival_time_minute': '30',
+                                                 'arrival_time_meridiem': 'p.m.',
+                                                 'departure_time_hour': '3',
+                                                 'departure_time_minute': '30',
+                                                 'departure_time_meridien': 'a.m',
+                                                 'number_attending': 1,
+                                                 'school': 'Personschoolversity',
+                                                },
+                                    follow=True)
+        response = self.client.get('/events/events_list')
+        self.assertTrue(response.status_code != 404)
+        print("OK")
