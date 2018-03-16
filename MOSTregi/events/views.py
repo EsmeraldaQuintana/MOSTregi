@@ -1,16 +1,20 @@
+# django imports
 from django.shortcuts import render_to_response, redirect, render, get_object_or_404
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.template import loader, TemplateDoesNotExist
+from django.utils import timezone
 
+# project imports
 from .models import BookingRequest
 from .forms import BookingRequestForm
-
-from django.utils import timezone
-#from django.urls import reverse
 
 def show_detail(request, pk):
     event = event = get_object_or_404(BookingRequest, pk=pk)
     return render(request, 'events/event_detail.html', {'event': event})
+
+def list_all(request):
+    events = BookingRequest.objects.all().order_by('-date_time_received')
+    return render(request, 'events/event_list.html', {'events': events})
 
 def new(request):
     if request.method == "POST":

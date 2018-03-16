@@ -1,17 +1,24 @@
 {% extends 'index.html' %}
+
 {% load staticfiles %}
 
 {% block extrahead %}
-<link rel="stylesheet" href="{% static '/css/event_detail.css' %}">
+<link rel="stylesheet" href="{% static '/css/event_list.css' %}">
 {% endblock %}
 
 {% block 'content' %}
+<html>
+<h1>Currently Registered Tours:</h1>
+{% for event in events %}
 <div class="event_detail">
-  <h2>Booking received!</h3>
   <table>
     <tr>
       <th>Booked by:</th>
-      <th>{{ event.name }}</th>
+      <th style="font-weight: bold;">{{ event.name }}</th>
+    </tr>
+    <tr>
+      <th>Received on:</th>
+      <th style="font-weight: bold;">{{ event.date_time_received }}</th>
     </tr>
     <tr>
       <th>Email:</th>
@@ -20,10 +27,6 @@
     <tr>
       <th>Phone number:</th>
       <th>{{ event.telephone }}</th>
-    </tr>
-    <tr>
-      <th>Received on:</th>
-      <th>{{ event.date_time_received }}</th>
     </tr>
     <tr>
       <th>Date requested:</th>
@@ -43,7 +46,8 @@
     </tr>
   </table>
   <a class="btn btn-default" href="{% url 'events:edit' pk=event.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-  <a class="btn btn-default" href="{% url 'events:new' %}"><span class="glyphicon">New</span></a>
 </div>
+{% endfor %}
+</html>
 
 {% endblock %}

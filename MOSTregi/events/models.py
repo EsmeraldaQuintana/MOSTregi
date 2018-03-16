@@ -1,12 +1,16 @@
+# external dependency
+from phonenumber_field.modelfields import PhoneNumberField
+
+# python imports
+import datetime
+from functools import partial
+
+# django imports
 from django.db import models
 from django.db.models import DateTimeField
-from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import MaxValueValidator, MinValueValidator, EmailValidator
 from django.utils import timezone
 from django.conf import settings
-
-import datetime
-from functools import partial
 
 class AutoDateTimeField(models.DateTimeField):
     def pre_save(self, model_instance, add):
