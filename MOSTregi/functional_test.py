@@ -79,7 +79,6 @@ class NewVisitorTest(unittest.TestCase):
         name.clear()
         name.send_keys("Schoolversity")
         name.submit()
-        time.sleep(2)
         print(". . . test_can_register_event: OK")
 
     def test_can_edit_form(self):
@@ -87,6 +86,38 @@ class NewVisitorTest(unittest.TestCase):
         print(". . . > the user can get to the add page")
         self.browser.get('http://localhost:8000/events/new/')
         # ADD INFORMATION
+        name = self.browser.find_element_by_css_selector('input#id_name')
+        name.clear()
+        name.send_keys("Danny Burrito")
+        name = self.browser.find_element_by_css_selector('input#id_email')
+        name.clear()
+        name.send_keys("person@webbersitorino.com")
+        name = self.browser.find_element_by_css_selector('input#id_telephone')
+        name.clear()
+        name.send_keys("6463012333")
+        name = self.browser.find_element_by_css_selector('select#id_arrival_time_hour')
+        name.send_keys(Keys.DOWN)
+        name = self.browser.find_element_by_css_selector('select#id_arrival_time_minute')
+        name.send_keys(Keys.DOWN)
+        name = self.browser.find_element_by_css_selector('select#id_arrival_time_meridiem')
+        name.send_keys(Keys.UP)
+        name = self.browser.find_element_by_css_selector('select#id_departure_time_hour')
+        name.send_keys(Keys.DOWN)
+        name.send_keys(Keys.DOWN)
+        name.send_keys(Keys.DOWN)
+        name = self.browser.find_element_by_css_selector('select#id_departure_time_meridiem')
+        name.send_keys(Keys.DOWN)
+        name = self.browser.find_element_by_css_selector('input#id_number_attending')
+        name.clear()
+        name.send_keys("20")
+        name = self.browser.find_element_by_css_selector('input#id_school')
+        name.clear()
+        name.send_keys("Schoolversity")
+        name.submit()
+        # go to edit page
+        button = self.browser.find_element_by_id('edit_button')
+        button.click()
+        # ADD INFORMATION (again)
         name = self.browser.find_element_by_css_selector('input#id_name')
         name.clear()
         name.send_keys("Danny Burrito")
@@ -117,19 +148,60 @@ class NewVisitorTest(unittest.TestCase):
         name.clear()
         name.send_keys("Schoolversity")
         name.submit()
-        # print(self.browser.current_url)
-        time.sleep(5)
-        print("\n Bug: name.submit() does not redirect to new URL \n")
-        button = self.browser.find_element_by_id('#edit_button')
-        button.click()
-        time.sleep()
         print(". . . test_can_edit_form: OK")
+
+    def test_can_see_post_list(self):
+        print(". . . test_can_see_post_list... ")
+        # go to new form
+        self.browser.get('http://localhost:8000/events/new/')
+        # submit information
+        name = self.browser.find_element_by_css_selector('input#id_name')
+        name.clear()
+        name.send_keys("Danny Likes PageLists")
+        name = self.browser.find_element_by_css_selector('input#id_email')
+        name.clear()
+        name.send_keys("person@webbersitorino.com")
+        name = self.browser.find_element_by_css_selector('input#id_telephone')
+        name.clear()
+        name.send_keys("6463012333")
+        name = self.browser.find_element_by_css_selector('select#id_arrival_time_hour')
+        name.send_keys(Keys.DOWN)
+        name = self.browser.find_element_by_css_selector('select#id_arrival_time_minute')
+        name.send_keys(Keys.DOWN)
+        name = self.browser.find_element_by_css_selector('select#id_arrival_time_meridiem')
+        name.send_keys(Keys.UP)
+        # arrival: 10:30 a.m.
+        name = self.browser.find_element_by_css_selector('select#id_departure_time_hour')
+        name.send_keys(Keys.DOWN)
+        name.send_keys(Keys.DOWN)
+        name.send_keys(Keys.DOWN)
+        name = self.browser.find_element_by_css_selector('select#id_departure_time_meridiem')
+        name.send_keys(Keys.DOWN)
+        # departure: 12:00 p.m.
+        name = self.browser.find_element_by_css_selector('input#id_number_attending')
+        name.clear()
+        name.send_keys("20")
+        name = self.browser.find_element_by_css_selector('input#id_school')
+        name.clear()
+        name.send_keys("Schoolversity")
+        name.submit()
+        # go to event event_list
+        self.browser.get('http://localhost:8000/events/all/')
+        # see event is there
+        html = self.browser.find_element_by_tag_name('tbody').text
+        self.assertIn('Danny Likes PageLists', html)
+        print(". . . test_can_edit_form: OK")
+
+    def test_can_delete_post(self):
+        self.fail('Unfinished test.')
 
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(NewVisitorTest('test_selenium_webdriver'))
     suite.addTest(NewVisitorTest('test_can_register_event'))
     suite.addTest(NewVisitorTest('test_can_edit_form'))
+    suite.addTest(NewVisitorTest('test_can_see_post_list'))
+    suite.addTest(NewVisitorTest('test_can_delete_post'))
     return suite
 
 if __name__ == '__main__':

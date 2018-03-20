@@ -46,9 +46,6 @@ def edit(request, pk):
             data=request.POST.get('date_request')
             print(data)
     else:
-        print("No POST! :)")
-        event = get_object_or_404(BookingRequest, pk=pk)
-        print(event)
         form = BookingRequestForm(instance=event)
     return render(request, 'events/new.html', {'form': form})
 
