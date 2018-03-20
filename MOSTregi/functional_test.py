@@ -1,18 +1,18 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from seleniumrequests import Firefox
 import time
 import unittest
 
-class NewVisitorTest(unittest.TestCase):
-    print(". . . NewVisitorTest enter")
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from seleniumrequests import Firefox
+
+class FunctionalTest(unittest.TestCase):
 
     def setUp(self):
-        print(". . . NewVisitorTest setUp")
+        print(". . . FunctionalTest setUp")
         self.browser = webdriver.Firefox()
 
     def tearDown(self):
-        print(". . . NewVisitorTest tearDown")
+        print(". . . FunctionalTest tearDown")
         self.browser.quit()
 
     def test_selenium_webdriver(self):
@@ -115,6 +115,7 @@ class NewVisitorTest(unittest.TestCase):
         name.send_keys("Schoolversity")
         name.submit()
         # go to edit page
+        time.sleep(1)
         button = self.browser.find_element_by_id('edit_button')
         button.click()
         # ADD INFORMATION (again)
@@ -193,15 +194,15 @@ class NewVisitorTest(unittest.TestCase):
         print(". . . test_can_edit_form: OK")
 
     def test_can_delete_post(self):
-        self.fail('Unfinished test.')
+        self.fail('Finish the test...')
 
 def suite():
     suite = unittest.TestSuite()
-    suite.addTest(NewVisitorTest('test_selenium_webdriver'))
-    suite.addTest(NewVisitorTest('test_can_register_event'))
-    suite.addTest(NewVisitorTest('test_can_edit_form'))
-    suite.addTest(NewVisitorTest('test_can_see_post_list'))
-    suite.addTest(NewVisitorTest('test_can_delete_post'))
+    suite.addTest(FunctionalTest('test_selenium_webdriver'))
+    suite.addTest(FunctionalTest('test_can_register_event'))
+    suite.addTest(FunctionalTest('test_can_edit_form'))
+    suite.addTest(FunctionalTest('test_can_see_post_list'))
+    suite.addTest(FunctionalTest('test_can_delete_post'))
     return suite
 
 if __name__ == '__main__':
