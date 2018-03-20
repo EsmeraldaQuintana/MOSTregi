@@ -1,4 +1,3 @@
-#!/bin/zsh
 echo "==============================================" &&
 echo "  makemigrations                             |" &&
 echo "==============================================" &&
@@ -8,9 +7,9 @@ echo "  migrate                                    |" &&
 echo "==============================================" &&
 python3 manage.py migrate &&
 echo "==============================================" &&
-echo "  test                                       |" &&
+echo "  test (exclude unfinished)                  |" &&
 echo "==============================================" &&
-python3 manage.py test &&
+python3 manage.py test --exclude-tag=unfinished &&
 echo "==============================================" &&
 echo "  runserver                                  |" &&
 echo "==============================================" &&
