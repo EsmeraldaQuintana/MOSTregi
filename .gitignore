@@ -11,6 +11,8 @@ node_modules/
 tests/coverage_html/
 tests/.coverage
 build/
+virt/
+reports/
 tests/report/
 geckodriver.log
 db.sqlite3
