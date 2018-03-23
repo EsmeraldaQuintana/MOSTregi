@@ -21,6 +21,8 @@ If this doesn't work, do this:
   $ chmod +x deploy.sh
   $ ./deploy.sh
     If that didn't work, ask Esmeralda.
+### Making the report
+In form_test.py, change conn to the absolute path of where your database is.
 
 ### ENDING DEVELOPMENT SESSION:
 $ deactivate
