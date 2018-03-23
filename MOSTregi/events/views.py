@@ -53,6 +53,22 @@ def events_landing(request):
     html = "<html><body><h1> landing page </h1></body></html>"
     return HttpResponse(html)
 
+def delete(request, pk):
+    event = get_object_or_404(BookingRequest, pk=pk)
+    if request.method == "POST":
+        form = BookingRequestForm(request.POST, instance=event)
+        if form.is_valid():
+            post = form.save(request.POST)
+            post.save()
+            return redirect('events:show_detail', pk=post.pk)
+        else:
+            print("form not valid, form errors: %s, form is bound: %s" % (form.errors.as_data(), form.is_bound))
+            data=request.POST.get('date_request')
+            print(data)
+    else:
+        form = BookingRequestForm(instance=event)
+    event.remove(request)
+
 # =============================================
 #  code graveyard
 # =============================================

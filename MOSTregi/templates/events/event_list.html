@@ -46,6 +46,7 @@
     </tr>
   </table>
   <a class="btn btn-default" href="{% url 'events:edit' pk=event.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+  <a class="btn btn-default" href="{% url 'events:edit' pk=event.pk %}"><span class="glyphicon glyphicon-remove-sign"></span></a>
 </div>
 {% endfor %}
 </html>
