@@ -1,16 +1,16 @@
 echo "==============================================" &&
 echo "  makemigrations                             |" &&
 echo "==============================================" &&
-py manage.py makemigrations &&
+python3 manage.py makemigrations &&
 echo "==============================================" &&
 echo "  migrate                                    |" &&
 echo "==============================================" &&
-py manage.py migrate &&
+python3 manage.py migrate &&
 echo "==============================================" &&
 echo "  test (exclude unfinished)                  |" &&
 echo "==============================================" &&
-py manage.py test --exclude-tag=unfinished &&
+python3 manage.py test --exclude-tag=unfinished &&
 echo "==============================================" &&
 echo "  runserver                                  |" &&
 echo "==============================================" &&
-py manage.py runserver
+python3 manage.py runserver
