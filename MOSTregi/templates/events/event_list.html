@@ -45,8 +45,8 @@
       <th>{{ event.school }}</th>
     </tr>
   </table>
-  <a class="btn btn-default" href="{% url 'events:edit' pk=event.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-  <a class="btn btn-default" href="{% url 'events:edit' pk=event.pk %}"><span class="glyphicon glyphicon-remove-sign"></span></a>
+  <a class="btn btn-default" id="edit_button" href="{% url 'events:edit' pk=event.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+  <a class="btn btn-default" id="delete_button" href="{% url 'events:delete' pk=event.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
 </div>
 {% endfor %}
 </html>

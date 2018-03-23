@@ -22,9 +22,16 @@ def new(request):
         if form.is_valid():
             post = form.save(request.POST)
             post.save()
-            #return render(request, 'events/event_detail.html', {'event': post})
+            # this technically redundant.../
+            # form.save() should save the form data into a models
+            # but since form.save() also returns the instance of telephone
+            # model save, it doesn't hurt to just save it again, right?
+            #
+            # refactoring that when I feel like I actually get django...
+            #
             return redirect('events:show_detail', pk=post.pk)
-            #return redirect(reverse("events:confirm"), pk=post.pk)
+            # we wanted to use this... but it doesn't work!
+            # return redirect(reverse("events:confirm"), pk=post.pk)
         else:
             print("form not valid, form errors: %s, form is bound: %s" % (form.errors.as_data(), form.is_bound))
             data=request.POST.get('date_request')
@@ -32,6 +39,16 @@ def new(request):
     else:
         form = BookingRequestForm
     return render(request, 'events/new.html', {'form': form})
+
+def delete(request, pk):
+    try:
+        event = BookingRequest.objects.get(pk=pk)
+        deletetion_collector = event.delete()
+        form = BookingRequestForm
+        # INCOMPLETE: we want to give confirmation of delete, then add a new form.
+        return redirect('events:list_all')
+    except BookingRequest.DoesNotExist:
+        return render(request, 'error.html', {'error': "Form already deleted."})
 
 def edit(request, pk):
     event = get_object_or_404(BookingRequest, pk=pk)
@@ -52,22 +69,6 @@ def edit(request, pk):
 def events_landing(request):
     html = "<html><body><h1> landing page </h1></body></html>"
     return HttpResponse(html)
-
-def delete(request, pk):
-    event = get_object_or_404(BookingRequest, pk=pk)
-    if request.method == "POST":
-        form = BookingRequestForm(request.POST, instance=event)
-        if form.is_valid():
-            post = form.save(request.POST)
-            post.save()
-            return redirect('events:show_detail', pk=post.pk)
-        else:
-            print("form not valid, form errors: %s, form is bound: %s" % (form.errors.as_data(), form.is_bound))
-            data=request.POST.get('date_request')
-            print(data)
-    else:
-        form = BookingRequestForm(instance=event)
-    event.remove(request)
 
 # =============================================
 #  code graveyard
