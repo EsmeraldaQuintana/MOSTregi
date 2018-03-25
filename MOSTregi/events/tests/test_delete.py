@@ -14,7 +14,6 @@ from ..views import new
 from ..forms import BookingRequestForm
 
 class DeleteEvent(TestCase):
-    # @tag('unfinished')
     def test_can_delete_after_submission(self):
         print("events > test_delete > test_can_delete_after_submission: ", end="")
         # go to events/new/
@@ -68,4 +67,47 @@ class DeleteEvent(TestCase):
         # if new_pk != added_event_pk:
         #     print("%s != %s" % (new_pk, added_event_pk))
         #     self.fail("Form entry deleted is not the same as the entry submitted!")
+        print("OK")
+
+    @tag('unfinished')
+    def test_can_delete_all(self):
+        print("events > test_delete > test_can_delete_all: ", end="")
+        # go to events/new/
+        response = self.client.get('/events/new/')
+        # enter new event, with name field Sadface DeleteMeSon
+        response = self.client.post('/events/new/',
+                                    data={'name': 'Sadface DeleteMeSon',
+                                                 'email': 'person@personcom.com',
+                                                 'telephone': '6463012333',
+                                                 'date_request': datetime.date(2018, 3, 13),
+                                                 'arrival_time_hour': '07',
+                                                 'arrival_time_minute': '30',
+                                                 'arrival_time_meridiem': 'p.m.',
+                                                 'departure_time_hour': '3',
+                                                 'departure_time_minute': '30',
+                                                 'departure_time_meridien': 'a.m',
+                                                 'number_attending': 1,
+                                                 'school': 'Personschoolversity',
+                                                },
+                                    follow=True)
+        # enter new event, with name field Sadface DeleteMeAgainSon
+        response = self.client.post('/events/new/',
+                                    data={'name': 'Sadface DeleteMeAgainSon',
+                                                 'email': 'person@personcom.com',
+                                                 'telephone': '6463012333',
+                                                 'date_request': datetime.date(2018, 3, 13),
+                                                 'arrival_time_hour': '07',
+                                                 'arrival_time_minute': '30',
+                                                 'arrival_time_meridiem': 'p.m.',
+                                                 'departure_time_hour': '3',
+                                                 'departure_time_minute': '30',
+                                                 'departure_time_meridien': 'a.m',
+                                                 'number_attending': 1,
+                                                 'school': 'Personschoolversity',
+                                                },
+                                    follow=True)
+        # go to events/all/
+        # click the "Delete all" button
+        # make sure that Sadface DeleteMeSon and Sadface DeleteMeAgainSon
+        #  aren't list in events/all
         print("OK")
