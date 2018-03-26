@@ -6,9 +6,12 @@
 <link rel="stylesheet" href="{% static '/css/event_list.css' %}">
 {% endblock %}
 
-{% block 'content' %}
+{% block contentheader %}
+<h1 style="font-family: 'Playfair Display', serif;">Currently Registered:</h1>
+{% endblock %}
+
+{% block content %}
 <html>
-<h1>Currently Registered Tours:</h1>
 {% for event in events %}
 <div class="event_detail">
   <table>

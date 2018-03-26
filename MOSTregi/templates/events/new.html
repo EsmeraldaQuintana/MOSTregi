@@ -6,9 +6,13 @@
 <link rel="stylesheet" href="{% static '/css/new.css' %}">
 {% endblock %}
 
-{% block 'content' %}
+{% block contentheader %}
+<h1 style="font-family: 'Playfair Display', serif;">New Booking:</h1>
+{% endblock %}
+
+{% block content %}
 <html>
-    <h1 style="padding: 0 0 20px; color: hsl(0, 0%, 30%);">New Booking</h1>
+    <!-- <h1 style="padding: 0 0 20px; color: hsl(0, 0%, 30%);">New Booking</h1> -->
     <form method="POST" class="post-form">{% csrf_token %}
       <table>
         {{ form }}

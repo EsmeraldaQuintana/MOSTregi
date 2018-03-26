@@ -5,9 +5,12 @@
 <link rel="stylesheet" href="{% static '/css/event_detail.css' %}">
 {% endblock %}
 
-{% block 'content' %}
+{% block contentheader %}
+<h1 style="font-family: 'Playfair Display', serif;">Booking received!</h1>
+{% endblock %}
+
+{% block content %}
 <div class="event_detail">
-  <h2>Booking received!</h3>
   <table>
     <tr>
       <th>Booked by:</th>
