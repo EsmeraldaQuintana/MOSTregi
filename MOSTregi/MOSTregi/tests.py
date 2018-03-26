@@ -2,18 +2,18 @@ from django.test import TestCase
 from django.urls import resolve
 from django.http import HttpRequest
 
-from .views import index
-
 class LandingPageTest(TestCase):
     def test_root_url_resolves_to_index_view(self):
         print("MOSTregi/test.py > test_root_url_resolves_to_index_view: ", end="")
-        found = resolve('/')
-        self.assertEqual(found.func, index)
+        response = self.client.get('')
+        self.assertTrue(response.status_code == 200)
+        self.assertTemplateUsed(response, 'home.html')
         print("OK")
 
     def test_home_template(self):
         print("MOSTregi/test.py > test_home_template: ", end="")
-        response = self.client.get('/')
+        response = self.client.get('/home/')
+        self.assertTrue(response.status_code == 200)
         html = response.content.decode('utf8')
         self.assertTemplateUsed(response, 'home.html')
         self.assertTrue(html.strip().startswith('<html>'))
