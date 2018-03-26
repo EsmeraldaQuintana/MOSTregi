@@ -70,8 +70,10 @@
 
         <!-- content BLOCK -->
         <div id="shellblock">
-          {% block contentheader %}
-          {% endblock %}
+          <div id="contentheader">
+            {% block contentheader %}
+            {% endblock %}
+          </div>
           {% block content %}
           {% endblock %}
         </div>

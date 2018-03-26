@@ -188,6 +188,7 @@ a.article, a.article:hover {
     right: 0;
     margin: 0;
 }
+
 #content.active {
     width: 100%;
 }
@@ -201,6 +202,10 @@ a.article, a.article:hover {
   width: 100%;
 }
 
+#contentheader {
+  font-family: 'Playfair Display', serif;
+  color: hsla(360, 0%, 20%, 1.0);
+}
 
 /* OLD museum-title
 #museum-title {
