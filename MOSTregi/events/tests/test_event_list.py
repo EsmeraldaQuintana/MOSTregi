@@ -30,6 +30,7 @@ class EventListTest(TestCase):
                                                  'school': 'Personschoolversity',
                                                 },
                                     follow=True)
+        self.assertTrue(response.status_code != 404)
         response = self.client.post('/events/new/',
                                     data={'name': 'person2',
                                                  'email': 'person@personcom.com',
@@ -45,6 +46,7 @@ class EventListTest(TestCase):
                                                  'school': 'Personschoolversity',
                                                 },
                                     follow=True)
+        self.assertTrue(response.status_code != 404)
         response = self.client.post('/events/new/',
                                     data={'name': 'person3',
                                                  'email': 'person@personcom.com',
@@ -60,7 +62,9 @@ class EventListTest(TestCase):
                                                  'school': 'Personschoolversity',
                                                 },
                                     follow=True)
+        self.assertTrue(response.status_code != 404)
         response = self.client.get('/events/all/')
+        self.assertTrue(response.status_code != 404)
         html = response.content.decode('utf8')
         self.assertTrue(response.status_code != 404)
         self.assertTemplateUsed(response, 'events/event_list.html')

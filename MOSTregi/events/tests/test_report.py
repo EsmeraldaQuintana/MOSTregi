@@ -19,6 +19,7 @@ class ReportEvents(TestCase):
         print("events > test_delete > test_can_report_event_list: ", end="")
         # go to events/new/
         response = self.client.get('/events/new/')
+        self.assertTrue(response.status_code != 404)
         # enter new event, with name field Sadface DeleteMeSon
         response = self.client.post('/events/new/',
                                     data={'name': 'Sadface DeleteMeSon',
@@ -35,6 +36,7 @@ class ReportEvents(TestCase):
                                                  'school': 'Personschoolversity',
                                                 },
                                     follow=True)
+        self.assertTrue(response.status_code != 404)
         # go to events list views
         # click "download list"
         # check if that file has "Sadface DeleteMeSon"

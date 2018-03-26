@@ -17,6 +17,7 @@ class EditEvent(TestCase):
     def test_can_edit_after_submission(self):
         print("events > test_edit > test_can_edit_after_submission: ", end="")
         response = self.client.get('/events/new/')
+        self.assertTrue(response.status_code != 404)
         response = self.client.post('/events/new/',
                                     data={'name': 'person',
                                                  'email': 'person@personcom.com',
@@ -32,6 +33,7 @@ class EditEvent(TestCase):
                                                  'school': 'Personschoolversity',
                                                 },
                                     follow=True)
+        self.assertTrue(response.status_code != 404)
         first_pk = re.search(r"(?<=/events/show_detail/)(([0-9]+)(?=/))",
                              response.request['PATH_INFO']).group(0)
         html = response.content.decode('utf8')
@@ -44,6 +46,7 @@ class EditEvent(TestCase):
             print("%s != %s" % (pk, first_pk))
             self.fail("Form entry edited is not the same as the entry submitted!")
         response = self.client.get(edit_url, follow=True)
+        self.assertTrue(response.status_code != 404)
         html = response.content.decode('utf8')
         self.assertTemplateUsed(response, 'events/new.html')
         response = self.client.post(response.request['PATH_INFO'],
@@ -61,6 +64,7 @@ class EditEvent(TestCase):
                                                  'school': 'Personschoolversity',
                                                 },
                                     follow=True)
+        self.assertTrue(response.status_code != 404)
         self.assertTemplateUsed(response, 'events/event_detail.html')
         html = response.content.decode('utf8')
         new_pk = re.search(r"(?<=/events/edit/)(([0-9]+)(?=/))",html).group(0)

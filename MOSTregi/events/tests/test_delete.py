@@ -18,6 +18,7 @@ class DeleteEvent(TestCase):
         print("events > test_delete > test_can_delete_after_submission: ", end="")
         # go to events/new/
         response = self.client.get('/events/new/')
+        self.assertTrue(response.status_code != 404)
         # enter new event, with name field Sadface DeleteMeSon
         response = self.client.post('/events/new/',
                                     data={'name': 'Sadface DeleteMeSon',
@@ -34,6 +35,7 @@ class DeleteEvent(TestCase):
                                                  'school': 'Personschoolversity',
                                                 },
                                     follow=True)
+        self.assertTrue(response.status_code != 404)
         # added_event_pk holds the primarykey of the event just added
         added_event_pk = re.search(r"(?<=/events/show_detail/)(([0-9]+)(?=/))",
                              response.request['PATH_INFO']).group(0)
@@ -74,6 +76,7 @@ class DeleteEvent(TestCase):
         print("events > test_delete > test_can_delete_all: ", end="")
         # go to events/new/
         response = self.client.get('/events/new/')
+        self.assertTrue(response.status_code != 404)
         # enter new event, with name field Sadface DeleteMeSon
         response = self.client.post('/events/new/',
                                     data={'name': 'Sadface DeleteMeSon',
@@ -90,6 +93,7 @@ class DeleteEvent(TestCase):
                                                  'school': 'Personschoolversity',
                                                 },
                                     follow=True)
+        self.assertTrue(response.status_code != 404)
         # enter new event, with name field Sadface DeleteMeAgainSon
         response = self.client.post('/events/new/',
                                     data={'name': 'Sadface DeleteMeAgainSon',
@@ -106,6 +110,7 @@ class DeleteEvent(TestCase):
                                                  'school': 'Personschoolversity',
                                                 },
                                     follow=True)
+        self.assertTrue(response.status_code != 404)
         # go to events/all/
         # click the "Delete all" button
         # make sure that Sadface DeleteMeSon and Sadface DeleteMeAgainSon

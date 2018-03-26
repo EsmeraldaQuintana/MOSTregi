@@ -23,6 +23,7 @@ class AddEventPageTest(TestCase):
     def test_new_template(self):
         print("events > test_AddEventPage > test_new_template: ", end="")
         response = self.client.get('/events/new/')
+        self.assertTrue(response.status_code != 404)
         html = response.content.decode('utf8')
         self.assertTemplateUsed(response, 'events/new.html')
         self.assertTrue(html.strip().startswith('<html>'))
@@ -36,6 +37,7 @@ class AddEventPageTest(TestCase):
     def test_event_detail_template(self):
         print("events > test_AddEventPage > test_event_detail_template: ", end="")
         response = self.client.get('/events/new/')
+        self.assertTrue(response.status_code != 404)
         response = self.client.post('/events/new/',
                                     data={'name': 'person',
                                                  'email': 'person@personcom.com',
@@ -52,6 +54,7 @@ class AddEventPageTest(TestCase):
                                                 },
                                     follow=True)
         # note to self: post(..., follow=True) means follow the redirect
+        self.assertTrue(response.status_code != 404)
         html = response.content.decode('utf8')
         self.assertTemplateUsed(response, 'events/event_detail.html')
         self.assertTrue(html.strip().startswith('<html>'))
@@ -65,6 +68,7 @@ class AddEventPageTest(TestCase):
     def test_form_saving(self):
         print("events > test_AddEventPage > test_form_saving: ", end="")
         response = self.client.get('/events/new/')
+        self.assertTrue(response.status_code != 404)
         response = self.client.post('/events/new/',
                                     data={'name': 'person',
                                                  'email': 'person@personcom.com',
@@ -80,6 +84,7 @@ class AddEventPageTest(TestCase):
                                                  'school': 'Peopleveristy',
                                                 },
                                     follow=True)
+        self.assertTrue(response.status_code != 404)
         self.assertTemplateUsed(response, 'events/event_detail.html')
         html = response.content.decode('utf8')
         self.assertIn('person@personcom.com', html)
