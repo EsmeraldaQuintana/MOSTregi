@@ -38,11 +38,21 @@
           <h3><b>MOST History Event Manager</b></h3>
         </div>
         <ul class="list-unstyled CTAs">
+          {% if user.is_authenticated %}
+            <p>Logged in. Hi {{ user.username }}!</p>
+            <!-- <li><a href=" url 'logout' " class="download">logout</a></li> -->
+            {% if user.is_superuser %}
+              <!-- <li><a href=" url 'signup' " class="download">New Employee</a></li> -->
+            {% endif %}
+          {% else %}
+            <p>You are not logged in</p>
+            <!-- <li><a href=" url 'login' " class="download">login</a></li> -->
+          {% endif %}
+          <li><a href="" class="download">_________</a></li>
           <li><a href="/" class="download">Home</a></li>
           <li><a href="{% url 'events:new' %}" class="download">New Tour</a></li>
           <li><a href="{% url 'events:list_all' %}" class="download">List Tours</a></li>
           <li><a href="/admin/" class="download">Django Admin</a></li>
-          <li><a href="" class="download">_________</a></li>
           <li><a href="" class="download">_________</a></li>
           <li><a href="" class="download">_________</a></li>
           <li><a href="" class="download">_________</a></li>
