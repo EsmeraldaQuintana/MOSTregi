@@ -8,32 +8,33 @@ from django.contrib.auth.decorators import login_required
 
 # UNFINISHED
 # need to protect this page with "is superuser..."
-class signup(generic.CreateView):
-    form_class = UserCreationForm
-    success_url = '/login/'
-    template_name = 'registration/signup.html'
-
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            form = self.form_class(initial=self.initial)
-            return render(request, self.template_name, {'form': form } )
-        else:
-            return render(request, 'error.html', {'error': "Permission Denied. Please log in before attempting to create a new user."})
-
-    def post(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            form = self.form_class(request.POST)
-            if form.is_valid():
-                return self.form_valid(form)
-            else:
-                return self.form_invalid(form)
-        else:
-            return render(request, 'error.html', {'error': "Permission Denied. Please log in before creating a new user."})
-
-    def form_valid(self, form):
-        self.object = form.save()
-        employee_group = Group.objects.get(name='employee')
-        self.object.save()
-        self.object.groups.add(employee_group)
-        self.object.save()
-        return super().form_valid(form)
+# class signup(generic.CreateView):
+#     form_class = UserCreationForm
+#     success_url = '/login/'
+#     template_name = 'registration/signup.html'
+#
+#     def get(self, request, *args, **kwargs):
+#         self.object = self.get_object()
+#         if request.user.is_authenticated:
+#             form = self.form_class(initial=self.initial)
+#             return render(request, self.template_name, {'form': form } )
+#         else:
+#             return render(request, 'error.html', {'error': "Permission Denied. Please log in before attempting to create a new user."})
+#
+#     def post(self, request, *args, **kwargs):
+#         if request.user.is_authenticated:
+#             form = self.form_class(request.POST)
+#             if form.is_valid():
+#                 return self.form_valid(form)
+#             else:
+#                 return self.form_invalid(form)
+#         else:
+#             return render(request, 'error.html', {'error': "Permission Denied. Please log in before creating a new user."})
+#
+#     def form_valid(self, form):
+#         self.object = form.save()
+#         employee_group = Group.objects.get(name='employee')
+#         self.object.save()
+#         self.object.groups.add(employee_group)
+#         self.object.save()
+#         return super().form_valid(form)
