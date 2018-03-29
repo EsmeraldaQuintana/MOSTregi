@@ -236,6 +236,15 @@ class FunctionalTest(unittest.TestCase):
         self.assertNotIn('Danny Delete-o', page_source)
         print(". . . test_can_edit_form: OK")
 
+    def test_login(self):
+        print(". . . test_login: ", end="")
+        self.fail('Finish the test...')
+        print("OK")
+
+    def test_signup(self):
+        print(". . . test_signup: ", end="")
+        self.fail('Finish the test...')
+        print("OK")
 
 def suite():
     suite = unittest.TestSuite()
@@ -244,6 +253,8 @@ def suite():
     suite.addTest(FunctionalTest('test_can_edit_form'))
     suite.addTest(FunctionalTest('test_can_see_post_list'))
     suite.addTest(FunctionalTest('test_can_delete_post'))
+    # suite.addTest(FunctionalTest('test_login'))
+    # suite.addTest(FunctionalTest('test_signup'))
     return suite
 
 if __name__ == '__main__':
