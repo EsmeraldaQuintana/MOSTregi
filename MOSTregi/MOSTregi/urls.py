@@ -4,11 +4,11 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.conf.urls import url
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.views.generic.base import RedirectView
-from django.views.generic.base import TemplateView
+from django.views.generic.base import RedirectView, TemplateView
+from django.contrib.auth import views as auth_views
 
 from . import views
-
+from users import views as users_views
 
 urlpatterns = [
     re_path(r'^favicon.ico$',
@@ -20,9 +20,10 @@ urlpatterns = [
     re_path(r'^$', TemplateView.as_view(template_name='home.html')),
     path('home/', TemplateView.as_view(template_name='home.html')),
     re_path(r'^admin/', admin.site.urls),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('signup/', users_views.signup.as_view(), name='signup'),
     path('events/', include('events.urls', 'events')),
-    # re_path(r'^(.*[^/])$', views.redirect_and_add_slash),
-    # re_path(r'^([a-zA-Z/]{0,50})$', views.fetchHTML),
     #path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     #path('logout/', auth_views.LogoutView.as_view(template_name='registration/logged_out.html'), name='logout'),
 ]
