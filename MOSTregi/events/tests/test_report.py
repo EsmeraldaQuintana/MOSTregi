@@ -41,5 +41,5 @@ class ReportEvents(TestCase):
         # click "download list"
         # check if that file has "Sadface DeleteMeSon"
         # if it doesn't, fail!
-        # self.fail("Finish the test!")
+        self.fail("Finish the test!")
         print("OK")

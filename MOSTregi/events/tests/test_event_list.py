@@ -7,12 +7,14 @@ import re
 from django.test import TestCase
 from django.urls import resolve
 from django.http import HttpRequest
+from django.test import tag
 
 # project imports
 from ..views import new
 from ..forms import BookingRequestForm
 
 class EventListTest(TestCase):
+    @tag('unfinished')
     def test_all_list(self):
         print("events > test_list > test_all_list: ", end="")
         response = self.client.post('/events/new/',

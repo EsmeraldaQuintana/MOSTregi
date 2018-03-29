@@ -17,8 +17,9 @@
 
   <div class="line"></div>
 
-  <h3>For now, this homepage will serve as the README</h3>
+  <h3>For now, this homepage will serve as the README.</h3>
   <h4>It will be a quick start guide later. Maybe. Or a login page.</h4>
+  <h4>Or whatever it wants to be. We just want the homepage to be happy.</h4>
 
   <h3>Current features:</h3>
   <ul>
@@ -29,20 +30,22 @@
       </ul>
     </li>
     <li>Can add/edit/delete events with the Django Administrative Login</li>
+    <li>Basic user logins and signups!</li>
+    <li>User signups: must be logged into do so</li>
+    <li>Only logged in users can add/edit/delete</li>
   </ul>
 
   <h3>Currently working on:</h3>
   <ul>
     <li>user authentication
       <ul>
-        <li>We have added another user, <strong>employee</strong>, but the authentication isn't fully functional.</li>
+        <li>wanted: users can only edit/delete with booking.user = self</li>
       </ul>
     </li>
-    <li>styling: forms need to look prettier.</li>
+    <li>styling</li>
     <li>booking functionality: add, edit, delete.
       <ul>
-        <li>employees should be given the option to edit the form after registering (in the page following submit)</li>
-        <li>"needs auth" feature for bookings registered online</li>
+        <li>"needs confirmation" for anonymous bookings</li>
         <li>easy views for booking information: this week, this month, etc</li>
         <li>Museum Event handling: ability to see what bookings coincide with official museum events</li>
       </ul>
@@ -57,7 +60,6 @@
     <li>Django >=2</li>
     <li>django-bootstrap3 >=9</li>
     <li>django-phonenumber-field >=2.0</li>
-    <li>psycopg2 >=2.7</li>
   </ul>
 </div>
 

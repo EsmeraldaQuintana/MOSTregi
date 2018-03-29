@@ -7,6 +7,7 @@ import re
 from django.test import TestCase
 from django.urls import resolve
 from django.http import HttpRequest
+from django.test import tag
 
 # project imports
 from ..views import new
@@ -34,6 +35,7 @@ class AddEventPageTest(TestCase):
         self.assertTrue(html.strip().endswith('</html>'))
         print("OK")
 
+    @tag('unfinished')
     def test_event_detail_template(self):
         print("events > test_AddEventPage > test_event_detail_template: ", end="")
         response = self.client.get('/events/new/')
@@ -65,6 +67,7 @@ class AddEventPageTest(TestCase):
         self.assertTrue(html.strip().endswith('</html>'))
         print("OK")
 
+    @tag('unfinished')
     def test_form_saving(self):
         print("events > test_AddEventPage > test_form_saving: ", end="")
         response = self.client.get('/events/new/')

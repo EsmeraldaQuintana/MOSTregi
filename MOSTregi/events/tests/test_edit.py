@@ -7,6 +7,7 @@ import re
 from django.test import TestCase
 from django.urls import resolve
 from django.http import HttpRequest
+from django.test import tag
 
 # project imports
 from ..views import new
@@ -14,6 +15,7 @@ from ..forms import BookingRequestForm
 
 
 class EditEvent(TestCase):
+    @tag('unfinished')
     def test_can_edit_after_submission(self):
         print("events > test_edit > test_can_edit_after_submission: ", end="")
         response = self.client.get('/events/new/')

@@ -14,6 +14,7 @@ from ..views import new
 from ..forms import BookingRequestForm
 
 class DeleteEvent(TestCase):
+    @tag('unfinished')
     def test_can_delete_after_submission(self):
         print("events > test_delete > test_can_delete_after_submission: ", end="")
         # go to events/new/
