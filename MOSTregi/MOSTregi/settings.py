@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'django_extensions',
     'events',
+    'users',
 ]
 
 # phonenumber_field settings
@@ -126,7 +127,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#LOGIN_REDIRECT_URL = '/registration/loginsuccess'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
