@@ -40,6 +40,7 @@
         <ul class="list-unstyled CTAs">
           {% if user.is_authenticated %}
             <p>Hi {{ user.username }}!</p>
+<<<<<<< HEAD
             <li><a href="{% url 'logout' %}" class="download">logout</a></li>
             {% if user.is_superuser %}
               <li><a href="{% url 'signup' %}" class="download">New Employee</a></li>
@@ -47,6 +48,15 @@
           {% else %}
             <p>You are not logged in</p>
             <li><a href="{% url 'login' %}" class="download">login</a></li>
+=======
+            <!-- <li><a href=" url 'logout' " class="download">logout</a></li> -->
+            {% if user.is_superuser %}
+              <!-- <li><a href=" url 'signup' " class="download">New Employee</a></li> -->
+            {% endif %}
+          {% else %}
+            <p>You are not logged in</p>
+            <!-- <li><a href=" url 'login' " class="download">login</a></li> -->
+>>>>>>> f792fc4599235218370d936fc7ba72281b13312c
           {% endif %}
           <li><a href="" class="download">_________</a></li>
           <li><a href="/" class="download">Home</a></li>
