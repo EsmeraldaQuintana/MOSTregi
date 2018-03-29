@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% load staticfiles %}
+
+{% block extrahead %}
+{% endblock %}
+
+
+{% block contentheader %}
+<h1>Login</h1>
+{% endblock %}
+
+{% block content %}
+<html>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+</html>
+{% endblock %}
