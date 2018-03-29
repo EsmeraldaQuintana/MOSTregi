@@ -11,6 +11,7 @@ from django.db.models import DateTimeField
 from django.core.validators import MaxValueValidator, MinValueValidator, EmailValidator
 from django.utils import timezone
 from django.conf import settings
+from django.contrib.auth.models import User
 
 class AutoDateTimeField(models.DateTimeField):
     def pre_save(self, model_instance, add):
@@ -22,6 +23,7 @@ def current_hour(addhours = 0):
     return datetime.time(now.hour, now.minute)
 
 class BookingRequest(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=40,)
     date_time_received = AutoDateTimeField('booked on', default=timezone.now)
     email = models.CharField(max_length=40, validators=[EmailValidator])
@@ -39,6 +41,11 @@ class BookingRequest(models.Model):
     class Meta:
         verbose_name = 'visitor registration'
         verbose_name_plural = 'visitor registrations'
+    def save(self, *args, **kwargs):
+        if self.user is None:
+            self.user = User.objects.get(id=1)
+        super(BookingRequest, self).save(*args, **kwargs)
+
     def __str__(self):
         return "%s, booked on %s, for %s%s" % (self.name,
             self.date_time_received.strftime("%d.%m.%Y"),
