@@ -16,7 +16,7 @@ def list_all(request):
     return render(request, 'events/event_list.html', {'events': events})
 
 @login_required(login_url='/login/')
-@permission_required('events.add_BookingRequest', raise_exception=True)
+@permission_required('events.add_bookingrequest', raise_exception=True)
 def new(request):
     if request.method == "POST":
         form = BookingRequestForm(request.POST)
@@ -34,7 +34,7 @@ def new(request):
     return render(request, 'events/new.html', {'form': form})
 
 @login_required(login_url='/login/')
-@permission_required('events.delete_BookingRequest', raise_exception=True)
+@permission_required('events.delete_bookingrequest', raise_exception=True)
 def delete(request, pk):
     if not request.user.is_authenticated:
         return render(request, 'error.html', {'error': "Permission Denied. Please log in before deleting."})
@@ -48,7 +48,7 @@ def delete(request, pk):
         return render(request, 'error.html', {'error': "Form already deleted."})
 
 @login_required(login_url='/login/')
-@permission_required('events.change_BookingRequest', raise_exception=True)
+@permission_required('events.change_bookingrequest', raise_exception=True)
 def edit(request, pk):
     event = get_object_or_404(BookingRequest, pk=pk)
     if request.method == "POST":

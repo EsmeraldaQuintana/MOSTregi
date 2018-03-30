@@ -1,0 +1,96 @@
+
+>>> from django.contrib.auth.models import User
+>>> from django.contrib.auth import authenticate
+>>> user = authenticate(username='deleteissues', password='poooooop')
+>>> print(user)
+deleteissues
+>>> user.has_perm('events.add_bookingrequest')
+False
+>>> user.get_all_permissions()
+set()
+>>> user = authenticate(username='pinotnoir', password='pinotnoir')
+>>> user.get_all_permissions()
+{'users.change_user', 'auth.change_permission', 'sessions.add_session', 'events.delete_bookingrequest', 'events.delete_testpermissions', 'contenttypes.delete_contenttype', 'users.delete_token', 'sessions.change_session', 'auth.add_group', 'events.add_registration', 'events.add_testpermissions', 'users.change_token', 'contenttypes.add_contenttype', 'auth.delete_group', 'events.change_registration', 'users.delete_user', 'contenttypes.change_contenttype', 'auth.add_permission', 'auth.change_user', 'sessions.delete_session', 'auth.add_user', 'events.delete_demo_form', 'users.add_token', 'events.change_bookingrequest', 'auth.delete_user', 'users.add_user', 'admin.change_logentry', 'events.delete_registration', 'auth.change_group', 'admin.delete_logentry', 'auth.delete_permission', 'events.change_demo_form', 'events.add_bookingrequest', 'events.change_testpermissions', 'events.add_demo_form', 'admin.add_logentry'}
+>>> from django.contrib.contenttypes.models import ContentType
+>>> for ct in ContentType.objects.all():
+...   print(ct)
+...
+log entry
+permission
+group
+user
+content type
+session
+registration
+demo_form
+visitor registration
+token
+user
+testpermissions
+>>> from django.contrib.auth.models import Permission
+>>> Permission.objects.all()
+<QuerySet [<Permission: admin | log entry | Can add log entry>, <Permission: admin | log entry | Can change log entry>, <Permission: admin | log entry | Can delete log entry>, <Permission: auth | group | Can add group>, <Permission: auth | group | Can change group>, <Permission: auth | group | Can delete group>, <Permission: auth | permission | Can add permission>, <Permission: auth | permission | Can change permission>, <Permission: auth | permission | Can delete permission>, <Permission: auth | user | Can add user>, <Permission: auth | user | Can change user>, <Permission: auth | user | Can delete user>, <Permission: contenttypes | content type | Can add content type>, <Permission: contenttypes | content type | Can change content type>, <Permission: contenttypes | content type | Can delete content type>, <Permission: events | visitor registration | Can add booking request>, <Permission: events | visitor registration | Can change booking request>, <Permission: events | visitor registration | Can delete booking request>, <Permission: events | demo_form | Can add demo_form>, <Permission: events | demo_form | Can change demo_form>, '...(remaining elements truncated)...']>
+>>> Permission.objects.all().filter(name='events')
+<QuerySet []>
+>>> Permission.objects.all().filter(name='auth')
+<QuerySet []>
+>>> permissions.queryset = permissions.queryset.exclude(content_type__app_label__in=['admin', 'auth'])
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'permissions' is not defined
+>>> permissions.queryset = Permissions.queryset.exclude(content_type__app_label__in=['admin', 'auth'])
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Permissions' is not defined
+>>> Permission.objects.all().filter(content_type__app_label__in=['admin', 'auth'])
+<QuerySet [<Permission: admin | log entry | Can add log entry>, <Permission: admin | log entry | Can change log entry>, <Permission: admin | log entry | Can delete log entry>, <Permission: auth | group | Can add group>, <Permission: auth | group | Can change group>, <Permission: auth | group | Can delete group>, <Permission: auth | permission | Can add permission>, <Permission: auth | permission | Can change permission>, <Permission: auth | permission | Can delete permission>, <Permission: auth | user | Can add user>, <Permission: auth | user | Can change user>, <Permission: auth | user | Can delete user>]>
+>>> Permission.objects.all().filter(content_type__app_label__in=['events'])
+<QuerySet [<Permission: events | visitor registration | Can add booking request>, <Permission: events | visitor registration | Can change booking request>, <Permission: events | visitor registration | Can delete booking request>, <Permission: events | demo_form | Can add demo_form>, <Permission: events | demo_form | Can change demo_form>, <Permission: events | demo_form | Can delete demo_form>, <Permission: events | registration | Can add registration>, <Permission: events | registration | Can change registration>, <Permission: events | registration | Can delete registration>, <Permission: events | testpermissions | Can add test permissions>, <Permission: events | testpermissions | Can change test permissions>, <Permission: events | testpermissions | Can delete test permissions>]>
+>>> permissions.queryset = permissions.queryset.filter(content_type__model__in=['blog', 'post', 'user', 'group'])
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'permissions' is not defined
+>>> permissions.queryset = permissions.queryset.filter(content_type__model__in=['blog', 'post', 'user', 'group'])
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'permissions' is not defined
+>>> Permission.objects.all().filter(content_type__model__in=['demo_form'])
+<QuerySet [<Permission: events | demo_form | Can add demo_form>, <Permission: events | demo_form | Can change demo_form>, <Permission: events | demo_form | Can delete demo_form>]>
+>>> Permission.objects.all().filter(content_type__model__in=['demo_form']).delete()
+(3, {'auth.User_user_permissions': 0, 'auth.Permission': 3, 'auth.Group_permissions': 0})
+>>> Permission.objects.all().filter(content_type__model__in=['demo_form'])
+<QuerySet []>
+>>> Permission.objects.all().filter(content_type__app_label__in=['events'])
+<QuerySet [<Permission: events | visitor registration | Can add booking request>, <Permission: events | visitor registration | Can change booking request>, <Permission: events | visitor registration | Can delete booking request>, <Permission: events | registration | Can add registration>, <Permission: events | registration | Can change registration>, <Permission: events | registration | Can delete registration>, <Permission: events | testpermissions | Can add test permissions>, <Permission: events | testpermissions | Can change test permissions>, <Permission: events | testpermissions | Can delete test permissions>]>
+>>> Permission.objects.all().filter(content_type__model__in=['testpermissions'])
+<QuerySet [<Permission: events | testpermissions | Can add test permissions>, <Permission: events | testpermissions | Can change test permissions>, <Permission: events | testpermissions | Can delete test permissions>]>
+>>> Permission.objects.all().filter(content_type__model__in=['testpermissions']).delete()
+(3, {'auth.User_user_permissions': 0, 'auth.Permission': 3, 'auth.Group_permissions': 0})
+>>> Permission.objects.all().filter(content_type__app_label__in=['events'])
+<QuerySet [<Permission: events | visitor registration | Can add booking request>, <Permission: events | visitor registration | Can change booking request>, <Permission: events | visitor registration | Can delete booking request>, <Permission: events | registration | Can add registration>, <Permission: events | registration | Can change registration>, <Permission: events | registration | Can delete registration>]>
+>>> Permission.objects.all().filter(content_type__model__in=['registration']).
+  File "<console>", line 1
+    Permission.objects.all().filter(content_type__model__in=['registration']).
+                                                                             ^
+SyntaxError: invalid syntax
+>>> Permission.objects.all().filter(content_type__model__in=['registration'])
+<QuerySet [<Permission: events | registration | Can add registration>, <Permission: events | registration | Can change registration>, <Permission: events | registration | Can delete registration>]>
+>>> Permission.objects.all().filter(content_type__model__in=['registration']).delete()
+(3, {'auth.User_user_permissions': 0, 'auth.Permission': 3, 'auth.Group_permissions': 0})
+>>> Permission.objects.all().filter(content_type__app_label__in=['events'])
+<QuerySet [<Permission: events | visitor registration | Can add booking request>, <Permission: events | visitor registration | Can change booking request>, <Permission: events | visitor registration | Can delete booking request>]>
+>>> Permission.objects.all()
+<QuerySet [<Permission: admin | log entry | Can add log entry>, <Permission: admin | log entry | Can change log entry>, <Permission: admin | log entry | Can delete log entry>, <Permission: auth | group | Can add group>, <Permission: auth | group | Can change group>, <Permission: auth | group | Can delete group>, <Permission: auth | permission | Can add permission>, <Permission: auth | permission | Can change permission>, <Permission: auth | permission | Can delete permission>, <Permission: auth | user | Can add user>, <Permission: auth | user | Can change user>, <Permission: auth | user | Can delete user>, <Permission: contenttypes | content type | Can add content type>, <Permission: contenttypes | content type | Can change content type>, <Permission: contenttypes | content type | Can delete content type>, <Permission: events | visitor registration | Can add booking request>, <Permission: events | visitor registration | Can change booking request>, <Permission: events | visitor registration | Can delete booking request>, <Permission: sessions | session | Can add session>, <Permission: sessions | session | Can change session>, '...(remaining elements truncated)...']>
+>>> Permission.objects.all().filter(content_type__app_label__in=['events'])
+<QuerySet [<Permission: events | visitor registration | Can add booking request>, <Permission: events | visitor registration | Can change booking request>, <Permission: events | visitor registration | Can delete booking request>]>
+>>> Permission.objects.all().filter(content_type__app_label__in=['users'])
+
+>>> Permission.objects.all().filter(content_type__app_label__in=['users']).delete()
+(6, {'auth.User_user_permissions': 0, 'auth.Permission': 6, 'auth.Group_permissions': 0})
+>>> Permission.objects.all()
+
+>>> Permission.objects.all().filter(content_type__app_label__in=['events'])
+
+>>> Permission.objects.all().filter(content_type__app_label__in=['events']).values()
+
+>>>
