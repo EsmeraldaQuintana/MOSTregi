@@ -41,3 +41,18 @@ class TokenModelTest(TestCase):
         token2 = Token.objects.create(email='a@b.com')
         self.assertNotEqual(token1.uid, token2.uid)
         print("OK")
+
+class SignupFormTest(TestCase):
+    # @tag('unfinished')
+    def test_form_saving(self):
+        print("users > test_authentication > test_form_saving: ", end="")
+        response = self.client.get('/signup/')
+        self.assertTrue(response.status_code != 404)
+        response = self.client.post('/signup/',
+                                    data={'name': 'testuser',
+                                          'password1': 'fakepass1',
+                                          'password2': 'fakepass1',
+                                         },
+                                    follow=True)
+        self.assertTrue(response.status_code != 404)
+        print("OK")

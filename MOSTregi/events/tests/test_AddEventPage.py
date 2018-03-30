@@ -8,6 +8,8 @@ from django.test import TestCase
 from django.urls import resolve
 from django.http import HttpRequest
 from django.test import tag
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 
 # project imports
 from ..views import new
@@ -35,11 +37,13 @@ class AddEventPageTest(TestCase):
         self.assertTrue(html.strip().endswith('</html>'))
         print("OK")
 
-    @tag('unfinished')
     def test_event_detail_template(self):
         print("events > test_AddEventPage > test_event_detail_template: ", end="")
         response = self.client.get('/events/new/')
         self.assertTrue(response.status_code != 404)
+        user = User.objects.create_superuser(username='pinotnoir', email="fake@fake.com", password='pinotnoir')
+        if not self.client.login(username='pinotnoir', password='pinotnoir'):
+            self.fail("Could not log in!")
         response = self.client.post('/events/new/',
                                     data={'name': 'person',
                                                  'email': 'person@personcom.com',
@@ -67,11 +71,13 @@ class AddEventPageTest(TestCase):
         self.assertTrue(html.strip().endswith('</html>'))
         print("OK")
 
-    @tag('unfinished')
     def test_form_saving(self):
         print("events > test_AddEventPage > test_form_saving: ", end="")
         response = self.client.get('/events/new/')
         self.assertTrue(response.status_code != 404)
+        user = User.objects.create_superuser(username='pinotnoir', email="fake@fake.com", password='pinotnoir')
+        if not self.client.login(username='pinotnoir', password='pinotnoir'):
+            self.fail("Could not log in!")
         response = self.client.post('/events/new/',
                                     data={'name': 'person',
                                                  'email': 'person@personcom.com',

@@ -8,15 +8,19 @@ from django.test import TestCase
 from django.urls import resolve
 from django.http import HttpRequest
 from django.test import tag
+from django.contrib.auth.models import User
 
 # project imports
 from ..views import new
 from ..forms import BookingRequestForm
 
 class EventListTest(TestCase):
-    @tag('unfinished')
     def test_all_list(self):
         print("events > test_list > test_all_list: ", end="")
+        response = self.client.get('/')
+        user = User.objects.create_superuser(username='pinotnoir', email="fake@fake.com", password='pinotnoir')
+        if not self.client.login(username='pinotnoir', password='pinotnoir'):
+            self.fail("Could not log in!")
         response = self.client.post('/events/new/',
                                     data={'name': 'person1',
                                                  'email': 'person@personcom.com',

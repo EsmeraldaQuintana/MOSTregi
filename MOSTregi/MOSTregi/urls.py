@@ -22,7 +22,7 @@ urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    # path('signup/', users_views.signup.as_view(), name='signup'),
+    path('signup/', users_views.signup.as_view(), name='signup'),
     path('events/', include('events.urls', 'events')),
     #path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     #path('logout/', auth_views.LogoutView.as_view(template_name='registration/logged_out.html'), name='logout'),

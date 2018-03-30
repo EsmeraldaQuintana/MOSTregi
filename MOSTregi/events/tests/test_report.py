@@ -20,6 +20,10 @@ class ReportEvents(TestCase):
         # go to events/new/
         response = self.client.get('/events/new/')
         self.assertTrue(response.status_code != 404)
+        response = self.client.get('/')
+        user = User.objects.create_superuser(username='pinotnoir', email="fake@fake.com", password='pinotnoir')
+        if not self.client.login(username='pinotnoir', password='pinotnoir'):
+            self.fail("Could not log in!")
         # enter new event, with name field Sadface DeleteMeSon
         response = self.client.post('/events/new/',
                                     data={'name': 'Sadface DeleteMeSon',

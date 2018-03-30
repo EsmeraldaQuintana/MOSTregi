@@ -8,6 +8,7 @@ from django.test import TestCase
 from django.urls import resolve
 from django.http import HttpRequest
 from django.test import tag
+from django.contrib.auth.models import User
 
 # project imports
 from ..views import new
@@ -15,10 +16,12 @@ from ..forms import BookingRequestForm
 
 
 class EditEvent(TestCase):
-    @tag('unfinished')
     def test_can_edit_after_submission(self):
         print("events > test_edit > test_can_edit_after_submission: ", end="")
         response = self.client.get('/events/new/')
+        user = User.objects.create_superuser(username='pinotnoir', email="fake@fake.com", password='pinotnoir')
+        if not self.client.login(username='pinotnoir', password='pinotnoir'):
+            self.fail("Could not log in!")
         self.assertTrue(response.status_code != 404)
         response = self.client.post('/events/new/',
                                     data={'name': 'person',
