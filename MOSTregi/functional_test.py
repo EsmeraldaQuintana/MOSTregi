@@ -8,11 +8,11 @@ from seleniumrequests import Firefox
 class FunctionalTest(unittest.TestCase):
 
     def setUp(self):
-        print(". . . FunctionalTest setUp")
+        print(". . . s e t U p")
         self.browser = webdriver.Firefox()
 
     def tearDown(self):
-        print(". . . FunctionalTest tearDown")
+        print(". . . t e a r D o w n")
         self.browser.quit()
 
     def test_selenium_webdriver(self):
@@ -23,6 +23,16 @@ class FunctionalTest(unittest.TestCase):
     def test_can_register_event(self):
         print(". . . test_can_register_event... ")
         print(". . . > the user can get to the add page")
+        self.browser.get('http://localhost:8000/login/')
+        name = self.browser.find_element_by_css_selector('input#id_username')
+        name.clear()
+        name.send_keys("pinotnoir")
+        name = self.browser.find_element_by_css_selector('input#id_password')
+        name.clear()
+        name.send_keys("pinotnoir")
+        button = self.browser.find_element_by_id('login_button')
+        button.click()
+        time.sleep(1)
         self.browser.get('http://localhost:8000/events/new/')
 
         print(". . . > the user can see the form")
@@ -84,6 +94,16 @@ class FunctionalTest(unittest.TestCase):
     def test_can_edit_form(self):
         print(". . . test_can_edit_form... ")
         print(". . . > the user can get to the add page")
+        self.browser.get('http://localhost:8000/login/')
+        name = self.browser.find_element_by_css_selector('input#id_username')
+        name.clear()
+        name.send_keys("pinotnoir")
+        name = self.browser.find_element_by_css_selector('input#id_password')
+        name.clear()
+        name.send_keys("pinotnoir")
+        button = self.browser.find_element_by_id('login_button')
+        button.click()
+        time.sleep(1)
         self.browser.get('http://localhost:8000/events/new/')
         # ADD INFORMATION
         name = self.browser.find_element_by_css_selector('input#id_name')
@@ -153,6 +173,16 @@ class FunctionalTest(unittest.TestCase):
 
     def test_can_see_post_list(self):
         print(". . . test_can_see_post_list... ")
+        self.browser.get('http://localhost:8000/login/')
+        name = self.browser.find_element_by_css_selector('input#id_username')
+        name.clear()
+        name.send_keys("pinotnoir")
+        name = self.browser.find_element_by_css_selector('input#id_password')
+        name.clear()
+        name.send_keys("pinotnoir")
+        button = self.browser.find_element_by_id('login_button')
+        button.click()
+        time.sleep(1)
         # go to new form
         self.browser.get('http://localhost:8000/events/new/')
         # submit information
@@ -196,6 +226,16 @@ class FunctionalTest(unittest.TestCase):
     def test_can_delete_post(self):
         print(". . . test_can_edit_form... ")
         print(". . . > the user can get to the add page")
+        self.browser.get('http://localhost:8000/login/')
+        name = self.browser.find_element_by_css_selector('input#id_username')
+        name.clear()
+        name.send_keys("pinotnoir")
+        name = self.browser.find_element_by_css_selector('input#id_password')
+        name.clear()
+        name.send_keys("pinotnoir")
+        button = self.browser.find_element_by_id('login_button')
+        button.click()
+        time.sleep(1)
         self.browser.get('http://localhost:8000/events/new/')
         # ADD INFORMATION
         name = self.browser.find_element_by_css_selector('input#id_name')
@@ -238,23 +278,90 @@ class FunctionalTest(unittest.TestCase):
 
     def test_login(self):
         print(". . . test_login: ", end="")
-        self.fail('Finish the test...')
+        self.browser.get('http://localhost:8000/login/')
+        name = self.browser.find_element_by_css_selector('input#id_username')
+        name.clear()
+        name.send_keys("pinotnoir")
+        name = self.browser.find_element_by_css_selector('input#id_password')
+        name.clear()
+        name.send_keys("pinotnoir")
+        time.sleep(1)
+        button = self.browser.find_element_by_id('login_button')
+        button.click()
+        time.sleep(1)
+        page_source = self.browser.page_source
+        self.assertIn('Logged in', page_source)
+        print("OK")
+
+    def test_logout(self):
+        print(". . . test_logout: ", end="")
+        self.browser.get('http://localhost:8000/login/')
+        name = self.browser.find_element_by_css_selector('input#id_username')
+        name.clear()
+        name.send_keys("pinotnoir")
+        name = self.browser.find_element_by_css_selector('input#id_password')
+        name.clear()
+        name.send_keys("pinotnoir")
+        time.sleep(1)
+        button = self.browser.find_element_by_id('login_button')
+        button.click()
+        time.sleep(1)
+        self.browser.get('http://localhost:8000/logout/')
+        page_source = self.browser.page_source
+        self.assertIn('not logged in', page_source)
         print("OK")
 
     def test_signup(self):
         print(". . . test_signup: ", end="")
-        self.fail('Finish the test...')
+        self.browser.get('http://localhost:8000/login/')
+        name = self.browser.find_element_by_css_selector('input#id_username')
+        name.clear()
+        name.send_keys("pinotnoir")
+        name = self.browser.find_element_by_css_selector('input#id_password')
+        name.clear()
+        name.send_keys("pinotnoir")
+        time.sleep(1)
+        button = self.browser.find_element_by_id('login_button')
+        button.click()
+        time.sleep(1)
+        self.browser.get('http://localhost:8000/signup/')
+        page_source = self.browser.page_source
+        self.assertIn('Create', page_source)
+        name = self.browser.find_element_by_css_selector('input#id_username')
+        name.clear()
+        name.send_keys("newdude")
+        name = self.browser.find_element_by_css_selector('input#id_password1')
+        name.clear()
+        name.send_keys("randompass")
+        name = self.browser.find_element_by_css_selector('input#id_password2')
+        name.clear()
+        name.send_keys("randompass")
+        self.browser.get('http://localhost:8000/login/')
+        # ADD INFORMATION
+        name = self.browser.find_element_by_css_selector('input#id_username')
+        name.clear()
+        name.send_keys('newdude')
+        name = self.browser.find_element_by_css_selector('input#id_password')
+        name.clear()
+        name.send_keys("randompass")
+        time.sleep(1)
+        button = self.browser.find_element_by_id('login_button')
+        button.click()
+        time.sleep(1)
+        page_source = self.browser.page_source
+        self.assertIn('newdude', page_source)
         print("OK")
 
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(FunctionalTest('test_selenium_webdriver'))
+    suite.addTest(FunctionalTest('test_login'))
+    suite.addTest(FunctionalTest('test_logout'))
+    suite.addTest(FunctionalTest('test_signup'))
     suite.addTest(FunctionalTest('test_can_register_event'))
     suite.addTest(FunctionalTest('test_can_edit_form'))
     suite.addTest(FunctionalTest('test_can_see_post_list'))
     suite.addTest(FunctionalTest('test_can_delete_post'))
-    # suite.addTest(FunctionalTest('test_login'))
-    # suite.addTest(FunctionalTest('test_signup'))
     return suite
 
 if __name__ == '__main__':
