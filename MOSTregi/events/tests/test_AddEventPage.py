@@ -19,12 +19,20 @@ from ..forms import BookingRequestForm
 class AddEventPageTest(TestCase):
     def test_new_resolves_to_new_view(self):
         print("events > test_AddEventPage > test_new_resolves_to_new_view: ", end="")
+        response = self.client.get('/')
+        user = User.objects.create_superuser(username='pinotnoir', email="fake@fake.com", password='pinotnoir')
+        if not self.client.login(username='pinotnoir', password='pinotnoir'):
+            self.fail("Could not log in!")
         found = resolve('/events/new/')
         self.assertEqual(found.func, new)
         print("OK")
 
     def test_new_template(self):
         print("events > test_AddEventPage > test_new_template: ", end="")
+        response = self.client.get('/')
+        user = User.objects.create_superuser(username='pinotnoir', email="fake@fake.com", password='pinotnoir')
+        if not self.client.login(username='pinotnoir', password='pinotnoir'):
+            self.fail("Could not log in!")
         response = self.client.get('/events/new/')
         self.assertTrue(response.status_code != 404)
         html = response.content.decode('utf8')
@@ -41,6 +49,7 @@ class AddEventPageTest(TestCase):
         print("events > test_AddEventPage > test_event_detail_template: ", end="")
         response = self.client.get('/events/new/')
         self.assertTrue(response.status_code != 404)
+        response = self.client.get('/')
         user = User.objects.create_superuser(username='pinotnoir', email="fake@fake.com", password='pinotnoir')
         if not self.client.login(username='pinotnoir', password='pinotnoir'):
             self.fail("Could not log in!")
