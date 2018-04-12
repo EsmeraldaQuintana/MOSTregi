@@ -16,7 +16,7 @@ urlpatterns = [
     path('all/', views.list_all, name="list_all"),
     re_path(r'edit/(?P<pk>\d+)/', views.edit, name="edit"),
     re_path(r'delete/(?P<pk>\d+)/', views.delete, name="delete"),
-    re_path(r'delete_all/(?P<pk>\d+)/', views.delete_all, name="delete_all"),
+    path('delete_all/', views.delete_all, name="delete_all"),
     re_path(r'show_detail/(?P<pk>\d+)/', views.show_detail, name="show_detail"),
     #re_path(r'^([a-zA-Z/]{0,50})$', views.testCatch),
 ]
