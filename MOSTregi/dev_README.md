@@ -34,3 +34,7 @@ $ deactivate
 $ git add .
 $ git commit -m "Add a detailed commit message!"
 $ git push
+
+### If you updated the README.md in /
+$ ./scripts/generate_readme.sh
+This script will update the homepage to reflect ../README.md

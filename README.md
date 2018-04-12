@@ -8,6 +8,7 @@
 *   Can register events under "New Booking"
 *   Users, Groups, BookingRequest model in admin page
 *   Add/Edit/Delete functionality on webpage
+*   View BookingRequest: individual, list, and list all created by current user
 *   Basic user logins and signups
 *   Add/Edit/Delete require individual permissions
 *   User signups page requires permission
@@ -26,3 +27,5 @@
 *   Django >=2
 *   django-bootstrap3 >=9
 *   django-phonenumber-field >=2.0
+
+#### For building: please see dev_README.md in /MOSTregi
