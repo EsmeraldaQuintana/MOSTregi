@@ -33,6 +33,15 @@ def new(request):
         form = BookingRequestForm
     return render(request, 'events/new.html', {'form': form})
 
+#@login_required(login_url='/login/')
+#@permission_required('events.delete_all_bookingrequests', raise_exception=True)
+def delete_all(self):
+    try:
+        BookingRequest.objects.all().delete()
+        return redirect('events:list_all')
+    except BookingRequest.DoesNotExist:
+        return render(request, 'error.html', {'error': "Forms already deleted."})
+
 @login_required(login_url='/login/')
 @permission_required('events.delete_bookingrequest', raise_exception=True)
 def delete(request, pk):

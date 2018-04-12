@@ -51,6 +51,7 @@
   <p>Posted by {{ event.user }}, on {{ event.date_time_received }}<br></p>
   <a class="btn btn-default" id="edit_button" href="{% url 'events:edit' pk=event.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
   <a class="btn btn-default" id="delete_button" href="{% url 'events:delete' pk=event.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+  <a class="btn btn-default" id="delete_all_button" href="{% url 'events:delete_all' pk=event.pk %}"><span class="glyphicon">Delete All Reservations</span></a>
 </div>
 {% endfor %}
 </html>
