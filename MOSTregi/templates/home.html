@@ -13,54 +13,11 @@
 
 {% block content %}
 <div class= "home">
-  <p>Visit registration software suite for the Museum of South Texas History.</p>
+  <p>For now, this homepage will serve as the README. <br>
+  It will be a quick start guide later. Maybe. Or a login page. <br>
+  Or whatever it wants to be. We just want the homepage to be happy.</p>
 
-  <div class="line"></div>
-
-  <h3>For now, this homepage will serve as the README.</h3>
-  <h4>It will be a quick start guide later. Maybe. Or a login page.</h4>
-  <h4>Or whatever it wants to be. We just want the homepage to be happy.</h4>
-
-  <h3>Current features:</h3>
-  <ul>
-    <li>this README</li>
-    <li>Can register events under "New Booking"
-      <ul>
-        <li>After booking event, you can view the inputted information</li>
-      </ul>
-    </li>
-    <li>Can add/edit/delete events with the Django Administrative Login</li>
-    <li>Basic user logins and signups!</li>
-    <li>User signups: must be logged into do so</li>
-    <li>Only logged in users can add/edit/delete</li>
-  </ul>
-
-  <h3>Currently working on:</h3>
-  <ul>
-    <li>user authentication
-      <ul>
-        <li>wanted: users can only edit/delete with booking.user = self</li>
-      </ul>
-    </li>
-    <li>styling</li>
-    <li>booking functionality: add, edit, delete.
-      <ul>
-        <li>"needs confirmation" for anonymous bookings</li>
-        <li>easy views for booking information: this week, this month, etc</li>
-        <li>Museum Event handling: ability to see what bookings coincide with official museum events</li>
-      </ul>
-    </li>
-    <li>finishing this list...</li>
-  </ul>
-
-  <h3>Build Dependencies</h3>
-  <ul>
-    <li>Python3</li>
-    <li>pip3</li>
-    <li>Django >=2</li>
-    <li>django-bootstrap3 >=9</li>
-    <li>django-phonenumber-field >=2.0</li>
-  </ul>
+  {% include 'README.html' %}
 </div>
 
 {% endblock %}

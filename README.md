@@ -1,6 +1,7 @@
 
-# Visit registration software suite for the Museum of South Texas History for the CIS 405
-
+## Event Manager
+### a simple visitor management software
+#### by Esmeralda Quintana, Monti Wilkins, Edwin Bishop, Austin Schwartz, and Abbie Leonard
 
 ### Current features:
 *   this README
