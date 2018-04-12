@@ -322,9 +322,6 @@ class FunctionalTest(unittest.TestCase):
         name.send_keys("Schoolversity")
         name.submit()
         time.sleep(2)
-        button = self.browser.find_element_by_id('delete_button')
-        button.click()
-        time.sleep(1)
 
         self.browser.get('http://localhost:8000/logout/')
 
@@ -369,14 +366,11 @@ class FunctionalTest(unittest.TestCase):
         name = self.browser.find_element_by_css_selector('input#id_school')
         name.clear()
         name.send_keys("Schoolversity")
-        name.submit()
         time.sleep(2)
-        button = self.browser.find_element_by_id('delete_button')
-        button.click()
-        time.sleep(1)
+        name.submit()
 
         self.browser.get('http://localhost:8000/events/all/mine/')
-        time.sleep(1)
+        time.sleep(2)
         page_source = self.browser.page_source
         self.assertNotIn('Danny Peen-o', page_source)
         self.assertIn('Danny ShowMineEmployee-o', page_source)
@@ -460,14 +454,14 @@ class FunctionalTest(unittest.TestCase):
 
 def suite():
     suite = unittest.TestSuite()
-    suite.addTest(FunctionalTest('test_selenium_webdriver'))
-    suite.addTest(FunctionalTest('test_login'))
-    suite.addTest(FunctionalTest('test_logout'))
-    suite.addTest(FunctionalTest('test_signup'))
-    suite.addTest(FunctionalTest('test_can_register_event'))
-    suite.addTest(FunctionalTest('test_can_edit_form'))
-    suite.addTest(FunctionalTest('test_can_see_post_list'))
-    suite.addTest(FunctionalTest('test_can_delete_post'))
+    # suite.addTest(FunctionalTest('test_selenium_webdriver'))
+    # suite.addTest(FunctionalTest('test_login'))
+    # suite.addTest(FunctionalTest('test_logout'))
+    # suite.addTest(FunctionalTest('test_signup'))
+    # suite.addTest(FunctionalTest('test_can_register_event'))
+    # suite.addTest(FunctionalTest('test_can_edit_form'))
+    # suite.addTest(FunctionalTest('test_can_see_post_list'))
+    # suite.addTest(FunctionalTest('test_can_delete_post'))
     suite.addTest(FunctionalTest('test_can_see_list_mine'))
     return suite
 

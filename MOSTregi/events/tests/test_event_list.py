@@ -131,5 +131,4 @@ class EventListTest(TestCase):
         html = response.content.decode('utf8')
         self.assertIn('notrep', html)
         self.assertNotIn('pinotrep', html)
-        # print("OK")
-        self.fail('Unfinished')
+        print("OK")
