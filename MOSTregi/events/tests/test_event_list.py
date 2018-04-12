@@ -84,3 +84,52 @@ class EventListTest(TestCase):
         self.assertIn('person2', html)
         self.assertIn('person3', html)
         print("OK")
+
+    def test_all_mine_list(self):
+        print("events > test_list > test_all_mine_list: ", end="")
+        response = self.client.get('/')
+        user = User.objects.create_superuser(username='pinotnoir', email="fake@fake.com", password='pinotnoir')
+        if not self.client.login(username='pinotnoir', password='pinotnoir'):
+            self.fail("Could not log in!")
+        response = self.client.post('/events/new/',
+                                    data={'name': 'pinotrep',
+                                                 'email': 'person@personcom.com',
+                                                 'telephone': '6463012333',
+                                                 'date_request': datetime.date(2018, 3, 13),
+                                                 'arrival_time_hour': '07',
+                                                 'arrival_time_minute': '30',
+                                                 'arrival_time_meridiem': 'p.m.',
+                                                 'departure_time_hour': '3',
+                                                 'departure_time_minute': '30',
+                                                 'departure_time_meridien': 'a.m',
+                                                 'number_attending': 1,
+                                                 'school': 'Personschoolversity',
+                                                },
+                                    follow=True)
+        self.assertTrue(response.status_code != 404)
+        self.client.logout()
+        user = User.objects.create_superuser(username='pinotnotnoir', email="fake@fake.com", password='pinotnotnoir')
+        if not self.client.login(username='pinotnotnoir', password='pinotnotnoir'):
+            self.fail("Could not log in!")
+        response = self.client.post('/events/new/',
+                                    data={'name': 'notrep',
+                                                 'email': 'person@personcom.com',
+                                                 'telephone': '6463012333',
+                                                 'date_request': datetime.date(2018, 3, 13),
+                                                 'arrival_time_hour': '07',
+                                                 'arrival_time_minute': '30',
+                                                 'arrival_time_meridiem': 'p.m.',
+                                                 'departure_time_hour': '3',
+                                                 'departure_time_minute': '30',
+                                                 'departure_time_meridien': 'a.m',
+                                                 'number_attending': 1,
+                                                 'school': 'Personschoolversity',
+                                                },
+                                    follow=True)
+        response = self.client.get('/events/all/mine/')
+        self.assertTrue(response.status_code != 404)
+        html = response.content.decode('utf8')
+        self.assertIn('notrep', html)
+        self.assertNotIn('pinotrep', html)
+        # print("OK")
+        self.fail('Unfinished')
