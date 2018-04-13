@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% load staticfiles %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static '/css/event_list.css' %}">
+{% endblock %}
+
+{% block contentheader %}
+<h1 style="font-family: 'Playfair Display', serif;">Currently Registered:</h1>
+{% endblock %}
+
+{% block content %}
+<html>
+{% for event in events %}
+<div class="event_detail">
+  {% include 'events/event.html' %}
+</div>
+{% endfor %}
+</html>
+
+{% endblock %}

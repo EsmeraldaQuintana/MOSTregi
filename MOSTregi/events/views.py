@@ -21,7 +21,7 @@ def list_all(request):
 @login_required(login_url='/login/')
 def list_mine(request):
     events = BookingRequest.objects.filter(user=request.user).order_by('-date_time_received')
-    return render(request, 'events/event_list.html', {'events': events})
+    return render(request, 'events/event_list_mine.html', {'events': events})
 
 @login_required(login_url='/login/')
 @permission_required('events.add_bookingrequest', raise_exception=True)

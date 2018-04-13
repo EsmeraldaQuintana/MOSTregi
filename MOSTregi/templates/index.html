@@ -41,6 +41,7 @@
           {% if user.is_authenticated %}
             <p>Logged in. Hi {{ user.username }}!</p>
             <li><a href="{% url 'logout' %}" class="download">logout</a></li>
+            <li><a href="{% url 'events:list_mine' %}" class="download">My Tours</a></li>
             {% if user.is_superuser %}
               <li><a href="{% url 'signup' %}" class="download">New Employee</a></li>
             {% endif %}
