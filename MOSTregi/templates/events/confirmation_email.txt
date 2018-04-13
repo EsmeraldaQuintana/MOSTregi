@@ -1,0 +1,17 @@
+Hello, {{ event.name }}!
+
+MOSTregi has received and confirmed your request.
+
+Here is a summary:
+Booked by: {{ event.name }}
+   with email: {{ event.email }}
+   with number: {{ event.telephone }}
+   on: {{ event.date_time_received }}
+
+Event Date: {{ event.date_request }}
+Event Time: {{ event.arrival_time }} - {{ event.departure_time }}
+Number Attending: {{ event.number_attending }}
+School: {{ event.school }}
+
+Thank you!
+{{ event.user }}
