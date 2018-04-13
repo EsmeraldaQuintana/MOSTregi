@@ -10,6 +10,7 @@ from django.http import HttpRequest
 from django.test import tag
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.core import mail
 
 # project imports
 from ..views import new
@@ -103,6 +104,41 @@ class AddEventPageTest(TestCase):
                                                 },
                                     follow=True)
         self.assertTrue(response.status_code != 404)
+        self.assertTemplateUsed(response, 'events/event_detail.html')
+        html = response.content.decode('utf8')
+        self.assertIn('person@personcom.com', html)
+        self.assertIn('6463012333', html)
+        self.assertIn('March 26, 2018', html)
+        self.assertIn('6:30 a.m. - 3:30 p.m.', html)
+        self.assertIn('1', html)
+        self.assertIn('Peopleveristy', html)
+        print("OK")
+
+    def test_form_saving(self):
+        print("events > test_AddEventPage > test_form_saving: ", end="")
+        mail.outbox = []
+        response = self.client.get('/events/new/')
+        self.assertTrue(response.status_code != 404)
+        user = User.objects.create_superuser(username='pinotnoir', email="fake@fake.com", password='pinotnoir')
+        if not self.client.login(username='pinotnoir', password='pinotnoir'):
+            self.fail("Could not log in!")
+        response = self.client.post('/events/new/',
+                                    data={'name': 'person',
+                                                 'email': 'person@personcom.com',
+                                                 'telephone': '6463012333',
+                                                 'date_request': datetime.date(2018, 3, 26),
+                                                 'arrival_time_hour': '06',
+                                                 'arrival_time_minute': '30',
+                                                 'arrival_time_meridiem': 'a.m.',
+                                                 'departure_time_hour': '3',
+                                                 'departure_time_minute': '30',
+                                                 'departure_time_meridiem': 'p.m.',
+                                                 'number_attending': 1,
+                                                 'school': 'Peopleveristy',
+                                                },
+                                    follow=True)
+        self.assertTrue(response.status_code != 404)
+        self.assertEqual(len(mail.outbox), 1)
         self.assertTemplateUsed(response, 'events/event_detail.html')
         html = response.content.decode('utf8')
         self.assertIn('person@personcom.com', html)
