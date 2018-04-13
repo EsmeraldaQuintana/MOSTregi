@@ -454,14 +454,14 @@ class FunctionalTest(unittest.TestCase):
 
 def suite():
     suite = unittest.TestSuite()
-    # suite.addTest(FunctionalTest('test_selenium_webdriver'))
-    # suite.addTest(FunctionalTest('test_login'))
-    # suite.addTest(FunctionalTest('test_logout'))
-    # suite.addTest(FunctionalTest('test_signup'))
-    # suite.addTest(FunctionalTest('test_can_register_event'))
-    # suite.addTest(FunctionalTest('test_can_edit_form'))
-    # suite.addTest(FunctionalTest('test_can_see_post_list'))
-    # suite.addTest(FunctionalTest('test_can_delete_post'))
+    suite.addTest(FunctionalTest('test_selenium_webdriver'))
+    suite.addTest(FunctionalTest('test_login'))
+    suite.addTest(FunctionalTest('test_logout'))
+    suite.addTest(FunctionalTest('test_signup'))
+    suite.addTest(FunctionalTest('test_can_register_event'))
+    suite.addTest(FunctionalTest('test_can_edit_form'))
+    suite.addTest(FunctionalTest('test_can_see_post_list'))
+    suite.addTest(FunctionalTest('test_can_delete_post'))
     suite.addTest(FunctionalTest('test_can_see_list_mine'))
     return suite
 
