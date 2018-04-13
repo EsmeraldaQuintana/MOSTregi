@@ -23,6 +23,8 @@ def list_mine(request):
     events = BookingRequest.objects.filter(user=request.user).order_by('-date_time_received')
     return render(request, 'events/event_list.html', {'events': events})
 
+@login_required(login_url='/login/')
+@permission_required('events.add_bookingrequest', raise_exception=True)
 def new(request):
     if request.method == "POST":
         form = BookingRequestForm(request.POST)
@@ -35,7 +37,7 @@ def new(request):
             send_mail('Subject Test',
                       email_message,
                       'from@mostregi.net',
-                      ['to@notregi.net'],
+                      [post.email],
                       fail_silently=False )
             return redirect('events:show_detail', pk=post.pk)
         else:
@@ -46,43 +48,6 @@ def new(request):
         form = BookingRequestForm
     return render(request, 'events/new.html', {'form': form})
 
-def notify_email(request, slug):
-    """ Send notification email to original owner of device who lost it """
-    grab = Item.objects.get(slug=slug)
-    if request.method == "POST":
-        form = NotifyEmailForm(request.POST)
-        if form.is_valid():
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-            sender = request.user.email
-            recipients = [grab.created_by.email]
-            recipients.append(sender)
-            send_mail(subject, message, sender, recipients)
-            return HttpResponseRedirect('/notify/thanks')
-    else:
-        form = NotifyEmailForm()  # An unbound form
-    return render(request, 'send-mail.html', {'form': form, 'object': slug, })
-
-# @login_required(login_url='/login/')
-# @permission_required('events.add_bookingrequest', raise_exception=True)
-# def new(request):
-#     if request.method == "POST":
-#         form = BookingRequestForm(request.POST)
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             post.user = request.user
-#             post.save()
-#             return redirect('events:show_detail', pk=post.pk)
-#         else:
-#             print("form not valid, form errors: %s, form is bound: %s" % (form.errors.as_data(), form.is_bound))
-#             data=request.POST.get('date_request')
-#             print(data)
-#     else:
-#         form = BookingRequestForm
-#     return render(request, 'events/new.html', {'form': form})
-
-#@login_required(login_url='/login/')
-#@permission_required('events.delete_all_bookingrequests', raise_exception=True)
 def delete_all(self):
     try:
         BookingRequest.objects.all().delete()
