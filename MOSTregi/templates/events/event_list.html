@@ -15,43 +15,7 @@
 <a class="btn btn-default" id="delete_all_button" href="{% url 'events:delete_all' %}"><span class="glyphicon glyphicon-trash">All</span></a>
 {% for event in events %}
 <div class="event_detail">
-  <table>
-    <tr>
-      <th>Booked by:</th>
-      <th style="font-weight: bold;">{{ event.name }}</th>
-    </tr>
-    <tr>
-      <th>Received on:</th>
-      <th style="font-weight: bold;">{{ event.date_time_received }}</th>
-    </tr>
-    <tr>
-      <th>Email:</th>
-      <th>{{ event.email }}</th>
-    </tr>
-    <tr>
-      <th>Phone number:</th>
-      <th>{{ event.telephone }}</th>
-    </tr>
-    <tr>
-      <th>Date requested:</th>
-      <th>{{ event.date_request }}</th>
-    </tr>
-    <tr>
-      <th style="padding: 0 20px 0 0;">Time Requested:</th>
-      <th>{{ event.arrival_time }} - {{ event.departure_time }}</th>
-    </tr>
-    <tr>
-      <th># Attending:   </th>
-      <th>{{ event.number_attending }}</th>
-    </tr>
-    <tr>
-      <th>School:</th>
-      <th>{{ event.school }}</th>
-    </tr>
-  </table>
-  <p>Posted by {{ event.user }}, on {{ event.date_time_received }}<br></p>
-  <a class="btn btn-default" id="edit_button" href="{% url 'events:edit' pk=event.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-  <a class="btn btn-default" id="delete_button" href="{% url 'events:delete' pk=event.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+  {% include 'events/event.html' %}
 </div>
 {% endfor %}
 </html>
